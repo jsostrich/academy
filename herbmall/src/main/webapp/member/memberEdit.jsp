@@ -11,7 +11,6 @@ scope="session"></jsp:useBean>
 	//1
 	String userid=(String)session.getAttribute("userid");
 	
-	
 
 	//2
 	MemberVO vo = new MemberVO();

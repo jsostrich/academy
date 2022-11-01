@@ -214,7 +214,35 @@ public class MemberDAO {
 		}
 	}
 	
-	
+	public int updateUser(MemberVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con=pool.getConnection();
+			
+			String sql = "update member\r\n"
+					+ "set email=?\r\n"
+					+ "    , hp=?, zipcode=?, address=?\r\n"
+					+ "    , addressDetail=?\r\n"
+					+ "where userid = ?";
+			ps= con.prepareStatement(sql);
+			ps.setString(1, vo.getEmail());
+			ps.setString(2, vo.getHp());
+			ps.setString(3, vo.getZipcode());
+			ps.setString(4, vo.getAddress());
+			ps.setString(5, vo.getAddressDetail());
+			ps.setString(6, vo.getUserid());
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("처리 결과 cnt = "+cnt);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
 	
 }
 

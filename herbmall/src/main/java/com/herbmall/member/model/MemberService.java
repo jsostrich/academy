@@ -48,6 +48,10 @@ public class MemberService {
 		return vo;
 	}
 
+	public int updateUser(MemberVO vo) throws SQLException {
+		int cnt = memberDao.updateUser(vo);
+		return cnt;
+	}
 		
 	
 }
