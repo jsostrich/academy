@@ -192,19 +192,22 @@ public class MemberDAO {
 			    Timestamp regdate = rs.getTimestamp("regdate");
 			    int mileage = rs.getInt("mileage");
 			    Timestamp outdate = rs.getTimestamp("outdate");
-			    
-			    vo.getNo();
-			    vo.getName();
-			    vo.getPwd();
-			    vo.getEmail();
-			    vo.getHp();
-			    vo.getZipcode();
-			    vo.getAddress();
-			    vo.getAddressDetail();
-			    vo.getRegdate();
-			    vo.getMileage();
-			    vo.getOutdate();
+			
+			    vo.setNo(no);
+			    vo.setName(name);
+			    vo.setPwd(pwd);
+			    vo.setEmail(email);
+			    vo.setHp(hp);
+			    vo.setZipcode(zipcode);
+			    vo.setAddress(address);
+			    vo.setAddressDetail(addressDetail);
+			    vo.setRegdate(regdate);
+			    vo.setMileage(mileage);
+			    vo.setOutdate(outdate);
+			    vo.setUserid(userid);
 			}
+			System.out.println("회원 조회 결과 vo = "+vo+", 매개변수 userid="
+					+userid);
 			return vo;
 		}finally {
 			pool.dbClose(rs, ps, con);
