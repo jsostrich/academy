@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<%@ include file="../login/checkLogin.jsp" %>
 <jsp:useBean id="memberService" class="com.herbmall.member.model.MemberService" 
 scope="session"></jsp:useBean>
 <%
@@ -10,6 +11,8 @@ scope="session"></jsp:useBean>
 	//1
 	String userid=(String)session.getAttribute("userid");
 	
+	
+
 	//2
 	MemberVO vo = new MemberVO();
 	
@@ -49,17 +52,20 @@ scope="session"></jsp:useBean>
 		String[] emailArr=email.split("@");
 		email1= emailArr[0];
 		email2= emailArr[1];
-	}
-	
-	for(int i=0;i<emailList.length;i++){
-		if(email2.equals(emailList[i])){
-			email2=emailList[i];
-			cnt++;
+		
+		for(int i=0;i<emailList.length;i++){
+			if(email2.equals(emailList[i])){
+				email2=emailList[i];
+				cnt++;
+				break;
+			}
+		}
+		
+		if(cnt==0){
+			isEtc=true;
 		}
 	}
-	if(cnt==0){
-		isEtc=true;
-	}
+	
 %>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
@@ -235,6 +241,7 @@ $(function(){
         <input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
         	<%if(isEtc){%>
         		style="visibility:visible;"
+        		value="<%=email2 %>"
         	<% }else{%>
         		style="visibility:hidden"
         	<% }%>

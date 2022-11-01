@@ -1,3 +1,4 @@
+<%@page import="com.herbmall.common.PagingVO"%>
 <%@page import="com.herbmall.common.Utility"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.herbmall.reboard.model.ReBoardVO"%>
@@ -45,26 +46,18 @@
 	}
 	
 	int pageSize=5;  //한페이지에 보여줄 레코드 개수
-	int totalPage = (int)Math.ceil((float)totalRecord/pageSize); //총페이지수,4
 	int blockSize=10; //한 블럭에 보여줄 페이지 수
 	
-	//현재 페이지를 이용해 계산하는 변수들
-	int firstPage=currentPage-((currentPage-1)%blockSize); //[1],[11],[21]...
-	//=> 블럭의 시작 페이지
+	PagingVO pagevo = new PagingVO(currentPage,totalRecord,pageSize,blockSize);
 	
-	int lastPage=firstPage+(blockSize-1); //[10],[20],[30]...
-	//=> 블럭의 마지막 페이지
 	
-	int curPos = (currentPage-1)*pageSize; //페이지당 ArrayList에서의 시작 index
-	//0,5,10,15,...
 	
-	int num=totalRecord-curPos; //페이지당 글 리스트 시작 번호
 %>
 
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
-<title>답변형 게시판 글 목록 - 허브몰</title>
+<title>자료실 글 목록 - 허브몰</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
@@ -82,14 +75,14 @@
 </style>	
 </head>	
 <body>
-<h2>답변형 게시판</h2>
+<h2>자료실</h2>
 <%if(keyword!=null && !keyword.isEmpty()){%>
    <p>검색어 : <%= keyword%>, <%=list.size() %>건 검색되었습니다.</p>
 <% }%>
 <div class="divList">
 <table class="box2"
-	 	summary="답변형 게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>답변형 게시판</caption>
+	 	summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+	<caption>자료실</caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:50%;" />
@@ -111,7 +104,12 @@
 	  		<tr><td colspan="5" class="align_center">데이터가 없습니다.</td></tr>
 	  <%}else{ %>		
 		  <!--게시판 내용 반복문 시작  -->
-		  <%for(int i=0;i<pageSize;i++){
+		  
+		  <%
+		  int num = pagevo.getNum();
+		  int curPos = pagevo.getCurPos();
+		  
+		  for(int i=0;i<pagevo.getPageSize();i++){
 			  	if(num<1) break;
 			  	
 		  		ReBoardVO vo=list.get(curPos++);		  		
@@ -146,16 +144,16 @@
 </div>
 <div class="divPage">
 	<!-- 이전블럭으로 이동 -->
-	<%	if(firstPage>1){ %>
-			<a href="list.jsp?currentPage=<%=firstPage-1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
+	<%	if(pagevo.getFirstPage()>1){ %>
+			<a href="list.jsp?currentPage=<%=pagevo.getFirstPage()-1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
 				<img src="../images/first.JPG">
 			</a>	
 	<%	}	%>
 	<!-- 페이지 번호 추가 -->
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
 	<%
-		for(int i=firstPage;i<=lastPage;i++){
-			if(i>totalPage) break;
+		for(int i=pagevo.getFirstPage();i<=pagevo.getLastPage();i++){
+			if(i>pagevo.getTotalPage()) break;
 			
 			if(i==currentPage){%>
 				<span style="color:blue;font-weight: bold;font-size: 1em">
@@ -169,8 +167,8 @@
 	<!--  페이지 번호 끝 -->
 	
 	<!-- 다음 블럭으로 이동 -->
-	<%if(lastPage<totalPage){ %>
-		<a href="list.jsp?currentPage=<%=lastPage+1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
+	<%if(pagevo.getLastPage()<pagevo.getTotalPage()){ %>
+		<a href="list.jsp?currentPage=<%=pagevo.getLastPage()+1%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
 			<img src="../images/last.JPG">
 		</a>
 	<%} %>

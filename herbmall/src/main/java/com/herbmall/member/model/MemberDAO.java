@@ -140,7 +140,8 @@ public class MemberDAO {
 			//1,2
 			con = pool.getConnection();
 			//3
-			String sql="select pwd from member where userid=?";
+			String sql="select pwd from member where userid=? "
+					+ " and outdate is null";
 			ps=con.prepareStatement(sql);
 			ps.setString(1, userid);
 			
