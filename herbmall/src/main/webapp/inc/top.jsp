@@ -7,6 +7,7 @@
     if(t_userid!=null && !t_userid.isEmpty()){ //세션이 있다면 로그인 된 상태
     	t_login = true;
     }
+    
 %>
 <!DOCTYPE html>
 <html lang="ko">

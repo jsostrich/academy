@@ -11,6 +11,7 @@
 <jsp:useBean id="memberService" class="com.herbmall.member.model.MemberService"
  scope="session"></jsp:useBean>
 	<%
+	
 		//아이디 비밀번호는 세션에 저장하는게 중요하다!!!
 		// 아이디 저장하기는 쿠키에 저장하는것
 			request.setCharacterEncoding("utf-8");
