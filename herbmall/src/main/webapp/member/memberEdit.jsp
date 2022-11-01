@@ -41,6 +41,7 @@ scope="session"></jsp:useBean>
 	//email xxxxxxxx@xxxxxxxx
 	String[] emailList = {"naver.com","hanmail.net",
 			"nate.com","gmail.com"};
+	int cnt =0;
 	boolean isEtc = false; //true면 직접입력
 	String email = vo.getEmail();
 	String email1 = "", email2 = "";
@@ -53,10 +54,11 @@ scope="session"></jsp:useBean>
 	for(int i=0;i<emailList.length;i++){
 		if(email2.equals(emailList[i])){
 			email2=emailList[i];
-			break;			
-		}else{
-			isEtc=true;
+			cnt++;
 		}
+	}
+	if(cnt==0){
+		isEtc=true;
 	}
 %>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
