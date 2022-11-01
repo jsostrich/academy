@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,7 +167,49 @@ public class MemberDAO {
 		}
 	}
 	
-	
+	public MemberVO selectUser(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		MemberVO vo = new MemberVO();
+		try {
+			con = pool.getConnection();
+			String sql = "select * from member where userid=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				int no = rs.getInt("no");
+			    String name =rs.getString("name");
+			    String pwd = rs.getString("pwd");
+			    String email = rs.getString("email");
+			    String hp = rs.getString("hp");
+			    String zipcode = rs.getString("zipcode");
+			    String address = rs.getString("address");
+			    String addressDetail = rs.getString("addressDetail");
+			    Timestamp regdate = rs.getTimestamp("regdate");
+			    int mileage = rs.getInt("mileage");
+			    Timestamp outdate = rs.getTimestamp("outdate");
+			    
+			    vo.getNo();
+			    vo.getName();
+			    vo.getPwd();
+			    vo.getEmail();
+			    vo.getHp();
+			    vo.getZipcode();
+			    vo.getAddress();
+			    vo.getAddressDetail();
+			    vo.getRegdate();
+			    vo.getMileage();
+			    vo.getOutdate();
+			}
+			return vo;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
 	
 	
 	

@@ -1,7 +1,28 @@
+<%@page import="com.herbmall.member.model.MemberVO"%>
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<jsp:useBean id="memberService" class="com.herbmall.member.model.MemberService" 
+scope="session"></jsp:useBean>
+<%
+	//세션에서 로그인정보를 갖고와야한다.
+	//1
+	String userid=(String)session.getAttribute("userid");
+	
+	//2
+	MemberVO vo = new MemberVO();
+	
+	try{
+		//3
+		vo = memberService.selectUser(userid);
+	}catch(SQLException e){
+		e.printStackTrace();	
+	}
+	
 
+
+%>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -94,13 +115,14 @@ $(function(){
     <div>
         <label for="zipcode">주소</label>
         <input type="text" name="zipcode" id="zipcode" ReadOnly  
-        	title="우편번호" class="width_80">
+        	title="우편번호" class="width_80" value="<%=vo.getZipcode()%>">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="address" ReadOnly title="주소"  
-        class="width_350"><br />
+        class="width_350" value="<%=vo.getAddress() %>"   ><br />
         <span class="sp1">&nbsp;</span>
-        <input type="text" name="addressDetail" title="상세주소"  class="width_350">
+        <input type="text" name="addressDetail" title="상세주소"  class="width_350"
+         value="<%=vo.getAddressDetail() %>" >
     </div>
     <div>
         <label for="hp1">핸드폰</label>&nbsp;<select name="hp1" id="hp1" title="휴대폰 앞자리">

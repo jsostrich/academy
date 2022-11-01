@@ -43,6 +43,11 @@ public class MemberService {
 		return result;
 	}
 
-	
+	public MemberVO selectUser(String userid) throws SQLException {
+		MemberVO vo = memberDao.selectUser(userid);
+		return vo;
+	}
+
+		
 	
 }
