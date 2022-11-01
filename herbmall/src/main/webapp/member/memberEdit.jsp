@@ -38,8 +38,26 @@ scope="session"></jsp:useBean>
 		hp3=hpArr[2];
 	}
 	
+	//email xxxxxxxx@xxxxxxxx
+	String[] emailList = {"naver.com","hanmail.net",
+			"nate.com","gmail.com"};
+	boolean isEtc = false; //true면 직접입력
+	String email = vo.getEmail();
+	String email1 = "", email2 = "";
+	if(email!=null && !email.isEmpty()){
+		String[] emailArr=email.split("@");
+		email1= emailArr[0];
+		email2= emailArr[1];
+	}
 	
-	
+	for(int i=0;i<emailList.length;i++){
+		if(email2.equals(emailList[i])){
+			email2=emailList[i];
+			break;			
+		}else{
+			isEtc=true;
+		}
+	}
 %>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
@@ -183,16 +201,42 @@ $(function(){
     </div>
     <div>
         <label for="email1">이메일 주소</label>
-        <input type="text" name="email1"  id="email1" title="이메일주소 앞자리">@
+        <input type="text" name="email1"  id="email1" title="이메일주소 앞자리"
+        	value="<%=email1 %>" >@
         <select name="email2" id="email2"  title="이메일주소 뒷자리">
-            <option value="naver.com">naver.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="nate.com">nate.com</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="etc">직접입력</option>
+            <option value="naver.com"
+            	<%if(email2.equals(emailList[0])){%>
+            		selected="selected"
+            	<%}%>
+            >naver.com</option>
+            <option value="hanmail.net"
+            	<%if(email2.equals(emailList[1])){%>
+            		selected="selected"
+            	<%}%>
+            >hanmail.net</option>
+            <option value="nate.com"
+            	<%if(email2.equals(emailList[2])){%>
+            		selected="selected"
+            	<%}%>
+            >nate.com</option>
+            <option value="gmail.com"
+            	<%if(email2.equals(emailList[3])){%>
+            		selected="selected"
+            	<%}%>
+            >gmail.com</option>
+            <option value="etc"
+            	<%if(isEtc){%>
+            		selected="selected"
+            	<%}%>
+            >직접입력</option>
         </select>
         <input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
-        	style="visibility:hidden">
+        	<%if(isEtc){%>
+        		style="visibility:visible;"
+        	<% }else{%>
+        		style="visibility:hidden"
+        	<% }%>
+        	>
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="수정">
