@@ -21,7 +21,6 @@ public class MemberDAO {
 	public int insertMember(MemberVO memberVo) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
-		ResultSet rs=null;
 
 		try {
 			//1,2 

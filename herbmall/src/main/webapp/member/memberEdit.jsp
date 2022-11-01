@@ -20,8 +20,26 @@ scope="session"></jsp:useBean>
 		e.printStackTrace();	
 	}
 	
+	String zipcode = vo.getZipcode();
+	String address = vo.getAddress();
+	String AddressDetail = vo.getAddressDetail();
+	
+	if(zipcode==null) zipcode ="";
+	if(address==null) address ="";
+	if(AddressDetail==null) AddressDetail ="";
 
-
+	//hp 010-000-0000 값이 있을때만 스플릿 메서드 이용한다
+	String hp=vo.getHp();
+	String hp1="", hp2="", hp3="";
+	if(hp!=null && !hp.isEmpty()){
+		String[] hpArr=hp.split("-");
+		hp1=hpArr[0];
+		hp2=hpArr[1];
+		hp3=hpArr[2];
+	}
+	
+	
+	
 %>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
@@ -97,11 +115,11 @@ $(function(){
 	<legend>회원 정보 수정</legend>
     <div>
     	<span class="sp1">성명</span>        
-        <span></span>
+        <span><%=vo.getName() %></span>
     </div>
     <div>
         <span class="sp1">회원 ID</span>        
-        <span></span>
+        <span><%=vo.getUserid() %></span>
         
     </div>
     <div>
@@ -115,29 +133,53 @@ $(function(){
     <div>
         <label for="zipcode">주소</label>
         <input type="text" name="zipcode" id="zipcode" ReadOnly  
-        	title="우편번호" class="width_80" value="<%=vo.getZipcode()%>">
+        	title="우편번호" class="width_80" value="<%=zipcode%>">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="address" ReadOnly title="주소"  
-        class="width_350" value="<%=vo.getAddress() %>"   ><br />
+        class="width_350" value="<%=address %>"   ><br />
         <span class="sp1">&nbsp;</span>
         <input type="text" name="addressDetail" title="상세주소"  class="width_350"
-         value="<%=vo.getAddressDetail() %>" >
+         value="<%=AddressDetail %>" >
     </div>
     <div>
         <label for="hp1">핸드폰</label>&nbsp;<select name="hp1" id="hp1" title="휴대폰 앞자리">
-            <option value="010">010</option>
-            <option value="011">011</option>
-            <option value="016">016</option>
-            <option value="017">017</option>
-            <option value="018">018</option>
-            <option value="019">019</option>
+            <option value="010"
+            	<%if(hp1.equals("010")){%>
+            		selected="selected"
+            	<% }%>
+            >010</option>
+            <option value="011"
+            	<%if(hp1.equals("011")){%>
+            		selected="selected"
+            	<% }%>
+            >011</option>
+            <option value="016"
+            	<%if(hp1.equals("016")){%>
+            		selected="selected"
+            	<% }%>
+            >016</option>
+            <option value="017"
+            	<%if(hp1.equals("017")){%>
+            		selected="selected"
+            	<% }%>
+            >017</option>
+            <option value="018"
+            	<%if(hp1.equals("018")){%>
+            		selected="selected"
+            	<% }%>
+            >018</option>
+            <option value="019"
+            	<%if(hp1.equals("019")){%>
+            		selected="selected"
+            	<% }%>
+            >019</option>
        	</select>
         -
         <input type="text" name="hp2" id="hp2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80">-
+        	class="width_80" value="<%=hp2 %>" >-
         <input type="text" name="hp3" id="hp3" maxlength="4" title="휴대폰 뒷자리"
-        	class="width_80">
+        	class="width_80" value="<%=hp3 %>" >
     </div>
     <div>
         <label for="email1">이메일 주소</label>
