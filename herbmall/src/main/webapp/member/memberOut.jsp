@@ -7,19 +7,11 @@
 <jsp:useBean id="memberService" 
 	class="com.herbmall.member.model.MemberService" scope="session" >
 </jsp:useBean>
-<%
-	String userid = (String)session.getAttribute("userid");
-	memberVo= memberService.selectUser(userid);
-%>
 <script type="text/javascript">
 	$(function(){
 		$('#submit').click(function(){
 			if($('#pwd').val().length<1){
 				alert('비밀번호를 입력하셔야 합니다.');
-				$('#pwd').focus();
-				event.preventDefault();
-			}else if($('#pwd').val()!="<%=memberVo.getPwd()%>"){
-				alert('비밀번호가 맞지 않아요.');
 				$('#pwd').focus();
 				event.preventDefault();
 			}else{
