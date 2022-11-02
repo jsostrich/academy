@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/clear.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mystyle.css"/>
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>	
