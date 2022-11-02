@@ -13,6 +13,7 @@
 			alert('잘못된 url입니다');
 			location.href="list.jsp";
 		</script>
+		
 	<%	return;	
 	}
 	
