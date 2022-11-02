@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.herbmall.member.model.MemberVO"%>
 <%@page import="com.herbmall.comment.CommentVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.herbmall.board.model.BoardVO"%>
@@ -9,6 +11,8 @@
 scope="session"></jsp:useBean>
 <jsp:useBean id="commentVo" class="com.herbmall.comment.CommentVO" 
 scope="session"></jsp:useBean>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+
 <%
 	//list.jsp에서 [제목] 클릭하면 get방식으로 이동
 	//=> http://localhost:9090/herbmall/board/detail.jsp?no=3
@@ -42,6 +46,7 @@ scope="session"></jsp:useBean>
 	
 	
 	List<CommentVO> list =null;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	try{
 		list=commentService.selectNo(Integer.parseInt(no));
 	}catch(SQLException e){
@@ -65,7 +70,45 @@ scope="session"></jsp:useBean>
 	.divForm {
 		width: 500px;
 		}
-</style>  
+		#don{
+			border: 1px solid blue;
+			width: 500px;
+			border-collapse: collapse;
+		}
+		#don2{
+			border: 1px solid blue;
+		}
+	.divff{
+		width : 500px;
+	}
+	.spc1{
+		float:left;
+	}
+	.spc2{
+		float: right; 
+	}
+	.firstDiv{
+		clear: both;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('#comBtn').click(function(){
+			if($('#name').val().length<1){
+				alert('이름을 입력하셔야 합니다.');
+				event.preventDefault();
+			}
+			if($('#pwd').val().length<1){
+				alert('비밀번호를 입력하셔야 합니다.');
+				event.preventDefault();
+			}
+			if($('#content').val().length<1){
+				alert('뭐라도 입력하셔야 합니다.');
+				event.preventDefault();
+			}
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -93,28 +136,48 @@ scope="session"></jsp:useBean>
 		</div>
 	</div>
 	<div class="divForm">
-		<table>
+		<table id="don">
 		<%for(int i =0;i<list.size();i++){
-			%>
+			commentVo = list.get(i);%>
 		
 		<tr>
-			<td>
-			dd
+			<td id ="don2">
+			<%=commentVo.getName() %>
 			</td>
-			<td>
-			ff
+			<td id ="don2">
+			<%=commentVo.getContent() %>
 			</td>
-			<td>
-			ee
+			<td id ="don2">
+			<%=sdf.format(commentVo.getRegdate()) %>
 			</td>
 		</tr>
-		
-		
 		<% }%>
 		</table> 
-		
+	</div><br>
+	<div class="divff">
+		<h3>댓글</h3>
+		<form name ="frmComment" method ="post" action="comment_ok.jsp">
+		<fieldset>
+				<legend>글수정</legend>
+				<span class="spc1">
+					<label for="name">이름</label> 
+					<input type="text" id="name"
+						name="name" />
+				</span>
+				<span class="spc2"> 
+					<label for="pwd">비밀번호</label> 
+					<input type="password" id="pwd"
+						name="pwd" />
+				</span><br><br>
+				<div class="firstDiv">
+					<label for="content">내용</label> 
+					<textarea id="content" name="content" cols="70">
+					</textarea>
+				</div>
+				<input type="submit" value="댓글달기" id="comBtn"/>
+				</fieldset>
+		</form>
 	</div>
-
 	
 </body>
 </html>
