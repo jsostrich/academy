@@ -53,5 +53,9 @@ public class MemberService {
 		return cnt;
 	}
 		
+	public int deleteUser(String userid) throws SQLException {
+		int cnt = memberDao.deleteUser(userid);
+		return cnt;
+	}
 	
 }

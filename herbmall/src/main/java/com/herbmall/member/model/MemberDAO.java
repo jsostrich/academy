@@ -245,6 +245,27 @@ public class MemberDAO {
 		}
 	}
 	
+	public int deleteUser(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con=pool.getConnection();
+			String sql = "update member set outdate = sysdate "
+					+ " where userid=? and pwd=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("삭제 결과 cnt = "+cnt+", 매개 변수 userid = "+userid);
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
+	
+	
 }
 
 
