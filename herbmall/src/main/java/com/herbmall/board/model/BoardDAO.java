@@ -230,4 +230,48 @@ public class BoardDAO {
 		}
 	}
 	
+	public List<BoardVO> selectTitle() throws SQLException {
+		/*select * from 
+		(
+		    select * from board
+		    order by no
+		)
+		where rownum<=6;*/
+		
+		Connection con =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<BoardVO> list = new ArrayList<>();
+		try {
+			con=pool.getConnection();
+			
+			String sql="select * from "
+					+ "( "
+					+ "  select * from board "
+					+ "  order by no "
+					+ " ) "
+					+ " where rownum<=6 ";
+					
+			ps=con.prepareStatement(sql);
+			
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String title = rs.getString("title");
+				
+				BoardVO vo = new BoardVO();
+				vo.setNo(no);
+				vo.setTitle(title);
+				
+				list.add(vo);
+			}
+			System.out.println("메인 공지사항 조회 결과 : list.size ="+list.size());
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
 }
