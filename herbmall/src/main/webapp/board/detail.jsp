@@ -1,8 +1,14 @@
+<%@page import="com.herbmall.comment.CommentVO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.herbmall.board.model.BoardVO"%>
 <%@page import="com.herbmall.board.model.BoardDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<jsp:useBean id="commentService" class="com.herbmall.comment.CommentService" 
+scope="session"></jsp:useBean>
+<jsp:useBean id="commentVo" class="com.herbmall.comment.CommentVO" 
+scope="session"></jsp:useBean>
 <%
 	//list.jsp에서 [제목] 클릭하면 get방식으로 이동
 	//=> http://localhost:9090/herbmall/board/detail.jsp?no=3
@@ -32,6 +38,14 @@
 		content=content.replace("\r\n", "<br>");
 	}else{
 		content="";
+	}
+	
+	
+	List<CommentVO> list =null;
+	try{
+		list=commentService.selectNo(Integer.parseInt(no));
+	}catch(SQLException e){
+		e.printStackTrace();
 	}
 %>    
 <!DOCTYPE HTML>
@@ -77,6 +91,28 @@
         	<a href='delete.jsp?no=<%=no%>'>삭제</a> |
         	<a href='list.jsp'>목록</a>			
 		</div>
+	</div>
+	<div class="divForm">
+		<table>
+		<%for(int i =0;i<list.size();i++){
+			%>
+		
+		<tr>
+			<td>
+			dd
+			</td>
+			<td>
+			ff
+			</td>
+			<td>
+			ee
+			</td>
+		</tr>
+		
+		
+		<% }%>
+		</table> 
+		
 	</div>
 
 	
