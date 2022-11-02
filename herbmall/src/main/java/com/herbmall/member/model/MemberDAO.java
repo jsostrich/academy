@@ -222,9 +222,9 @@ public class MemberDAO {
 			con=pool.getConnection();
 			
 			String sql = "update member\r\n"
-					+ "set email=?\r\n"
-					+ "    , hp=?, zipcode=?, address=?\r\n"
-					+ "    , addressDetail=?\r\n"
+					+ "set email=?"
+					+ " , hp=?, zipcode=?, address=?"
+					+ " , addressDetail=?"
 					+ "where userid = ?";
 			ps= con.prepareStatement(sql);
 			ps.setString(1, vo.getEmail());
@@ -236,7 +236,8 @@ public class MemberDAO {
 			
 			int cnt = ps.executeUpdate();
 			
-			System.out.println("처리 결과 cnt = "+cnt);
+			System.out.println("처리 결과 cnt = "+cnt+
+					", 매개변수 vo = "+vo);
 			
 			return cnt;
 		}finally {
