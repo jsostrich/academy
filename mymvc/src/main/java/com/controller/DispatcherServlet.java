@@ -96,11 +96,13 @@ public class DispatcherServlet extends HttpServlet {
 			String viewPage = controller.requestProcess(request, response);
 			System.out.println("viewPage = "+viewPage);
 			
-			if(controller.isRedirect()) {
+			if(!controller.isRedirect()) {
 				System.out.println("redirect!");
 				
 				//해당 페이지로 redirect
-				response.sendRedirect(viewPage);
+				response.sendRedirect(contextPath+ viewPage);
+				//=>/mymvc + /tip/bookForm.jsp";
+				//=>/mymvc/tip/bookForm.jsp";
 			}else {
 				System.out.println("forward!\n");
 				//뷰페이지로 포워드
