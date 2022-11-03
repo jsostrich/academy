@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>travelForm.jsp</title>
+<title>menuForm.jsp</title>
 </head>
 <body>
 <h3>식성?을 고르면 식사메뉴를  추천해드립니다</h3>

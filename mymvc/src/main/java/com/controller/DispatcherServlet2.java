@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,27 +20,28 @@ public class DispatcherServlet2 extends HttpServlet {
 	
 	@Override
 	//해당 서블릿이 요청될때 최초로 한번만 호출되는 메서드
-	public void init(ServletConfig config) {
+	public void init(ServletConfig config2) {
 		//매핑 파일을 읽어서 Properties 컬렉션에 저장한다.
 		
 		//web.xml에서 init-param의 값 읽어오기
-		String configfile2 = config.getInitParameter("configFile2");
+		String configfile2 = config2.getInitParameter("configFile2");
 		//-> /config/CommandPro2.properties
 		
 		
 		//매핑 파일의 설제 경로 구하기
 		String realconfingfile2=
-				config.getServletContext().getRealPath(configfile2);
+				config2.getServletContext().getRealPath(configfile2);
 		System.out.println("들어온 파일 : "+configfile2);
 		System.out.println("들어온 파일의 실제 경로 : "+realconfingfile2);
 		
-		//=> //CommandPro.properties 파일의 정보를 Properties 컬렉션에 전달
+		//파일의 정보를 전달하기 위해 프로포티 객체 생성
 		props = new Properties();
 		FileInputStream fis = null;
 		
 			try {
 				fis = new FileInputStream(realconfingfile2);
 				props.load(fis);
+				//=> //CommandPro.properties 파일의 정보를 Properties 컬렉션에 전달
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,6 +80,7 @@ public class DispatcherServlet2 extends HttpServlet {
 		//사용자의 URI 읽어오기 -> /mymvc/tips/book.do
 		String uri = request.getRequestURI();
 		System.out.println("컨페스트 uri ="+uri);
+		
 		//위에서 구한 uri에서 컨테스트를 빼기 그러니까 컨테스트도 구해야함
 		String context = request.getContextPath();
 		
@@ -87,31 +91,46 @@ public class DispatcherServlet2 extends HttpServlet {
 		System.out.println("진짜 uri = "+jinjja_uri);
 		//진짜 uri를 만들었으니 uri 이름으로 들어갔을때 나오는 클래스의 위치를 찾아야한다
 		String command = props.getProperty(jinjja_uri);
+		System.out.println("명령어 처리 클래스 : "+command);
 		
 		//해당 String을 Class로 만든다.
 		try {
 			Class commandclass = Class.forName(command);
 			//여기서 나오는 클래스의 위치를 찾아서 클래스를 만들었으니 그에 맞는 메서드를 찾는다 
-			// 아마 이때가 직원들 분류해서 호출할때 쓰는듯
+			// 아마 이때가 직원들 분류해서 호출할때 쓰는듯 오버라이딩이 있으면 오버라이딩을 쓰자
+			Controller cls = (Controller)commandclass.newInstance();
+			//=> 해당 클래스의 객체를 생성
 			
+			//담당자 메서드 호출해서 뷰페이지로 옮기기
+			String damdangmethod = cls.requestProcess(request, response);
+			System.out.println("담당 메서드의 뷰위치"+damdangmethod);
+			
+			if(cls.isRedirect()) {
+				System.out.println("리다이렉트!");
+				//해당 페이지로 redirect
+				response.sendRedirect(context+jinjja_uri);
+				//=>/mymvc + /tip/bookForm.jsp";
+				//=>/mymvc/tip/bookForm.jsp";
+			}else {
+				System.out.println("포워드!");
+				//뷰페이지로 포워드
+				RequestDispatcher dispatcherServlet2 =
+						request.getRequestDispatcher(damdangmethod);
+				dispatcherServlet2.forward(request, response);
+			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-	
-			//=> 해당 클래스의 객체를 생성
-			
-			//담당자 메서드 호출
-			
-				
-				//해당 페이지로 redirect
-	
-				//=>/mymvc + /tip/bookForm.jsp";
-				//=>/mymvc/tip/bookForm.jsp";
-	
-				//뷰페이지로 포워드
-	
 	}
 }
 

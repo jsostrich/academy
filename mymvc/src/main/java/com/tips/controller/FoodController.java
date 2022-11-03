@@ -12,15 +12,15 @@ public class FoodController implements Controller{
 	public String requestProcess(HttpServletRequest request,
 			HttpServletResponse response) throws Throwable {
 
-		String food = request.getParameter("food");
+		String foodmenu = request.getParameter("foodmenu");
 		
 		FoodExpert model = new FoodExpert();
-		String result  =model.getTip(food);
+		String result  =model.getTip(foodmenu);
 		
 		request.setAttribute("result", result);
 		
 		
-		return "/tips/foodResult.jsp";
+		return "/tips/menuResult.jsp";
 		
 	}
 

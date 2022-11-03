@@ -96,7 +96,7 @@ public class DispatcherServlet extends HttpServlet {
 			String viewPage = controller.requestProcess(request, response);
 			System.out.println("viewPage = "+viewPage);
 			
-			if(!controller.isRedirect()) {
+			if(controller.isRedirect()) {
 				System.out.println("redirect!");
 				
 				//해당 페이지로 redirect

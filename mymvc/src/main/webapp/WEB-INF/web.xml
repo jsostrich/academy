@@ -20,10 +20,6 @@
 </init-param>
 </servlet>
 
-<servlet-mapping>
-<servlet-name>dispatcherServlet</servlet-name>
-<url-pattern>*.do</url-pattern>
-</servlet-mapping>
 
 <servlet>
 <servlet-name>dispatcherServlet2</servlet-name>
@@ -35,5 +31,9 @@
 </init-param>
 </servlet>
 
+<servlet-mapping>
+<servlet-name>dispatcherServlet2</servlet-name>
+<url-pattern>*.do</url-pattern>
+</servlet-mapping>
 
 </web-app>
