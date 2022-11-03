@@ -24,4 +24,10 @@ public class TravelController2 implements Controller{
 		return "/tips/travelResult.jsp";
 	}
 
+	@Override
+	public boolean isRedirect() {
+		
+		return false;
+	}
+
 }

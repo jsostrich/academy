@@ -96,9 +96,19 @@ public class DispatcherServlet extends HttpServlet {
 			String viewPage = controller.requestProcess(request, response);
 			System.out.println("viewPage = "+viewPage);
 			
-			RequestDispatcher dispatcher
+			if(controller.isRedirect()) {
+				System.out.println("redirect!");
+				
+				//해당 페이지로 redirect
+				response.sendRedirect(viewPage);
+			}else {
+				System.out.println("forward!\n");
+				//뷰페이지로 포워드
+				RequestDispatcher dispatcher
 				=request.getRequestDispatcher(viewPage);
-			dispatcher.forward(request, response);
+				dispatcher.forward(request, response);
+			}
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

@@ -24,4 +24,10 @@ public class BookController2 implements Controller{
 		return "/tips/bookResult.jsp";
 	}
 
+	@Override
+	public boolean isRedirect() {
+		
+		return false;
+	}
+
 }
