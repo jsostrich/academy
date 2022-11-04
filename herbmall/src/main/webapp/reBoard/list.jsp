@@ -1,4 +1,4 @@
-<%@page import="com.herbmall.common.Utility"%>
+<%@page import="com.mymvc.common.Utility"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.herbmall.reboard.model.ReBoardVO"%>
 <%@page import="java.util.List"%>

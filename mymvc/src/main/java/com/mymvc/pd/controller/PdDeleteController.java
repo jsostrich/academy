@@ -36,12 +36,11 @@ public class PdDeleteController implements Controller {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+		//3
 		request.setAttribute("msg", msg);
-		
-		
-		
-		
-		return null;
+		request.setAttribute("url", url);
+		//4
+		return "/common/message.jsp";
 	}
 
 	@Override

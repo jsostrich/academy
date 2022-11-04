@@ -1,6 +1,6 @@
 <%@page import="java.io.File"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.herbmall.common.Utility"%>
+<%@page import="com.mymvc.common.Utility"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="com.herbmall.reboard.model.ReBoardVO"%>
 <%@page import="com.herbmall.reboard.model.ReBoardDAO"%>

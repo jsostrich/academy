@@ -10,6 +10,8 @@
 	<%
 		String msg=(String)request.getAttribute("msg");
 		String url=(String)request.getAttribute("url");
+		url = request.getContextPath()+url; //
+		
 	%>
 	
 	<script type="text/javascript">

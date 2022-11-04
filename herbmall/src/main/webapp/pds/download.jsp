@@ -1,5 +1,5 @@
 <%@page import="java.io.BufferedOutputStream"%>
-<%@page import="com.herbmall.common.Utility"%>
+<%@page import="com.mymvc.common.Utility"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.BufferedInputStream"%>

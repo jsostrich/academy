@@ -26,7 +26,8 @@
 	$(function(){
 		$('#aDel').click(function(){
 			if(confirm("삭제하시겠습니까?")){
-				location.href="pdDelete.jsp?no=<%=dto.getNo()%>";
+				location.href
+				="<%=request.getContextPath()%>/pd/pdDelete.do?no=<%=no%>";
 			}
 		});
 	});

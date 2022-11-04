@@ -1,5 +1,5 @@
 <%@page import="java.io.File"%>
-<%@page import="com.herbmall.common.Utility"%>
+<%@page import="com.mymvc.common.Utility"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.herbmall.reboard.model.ReBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

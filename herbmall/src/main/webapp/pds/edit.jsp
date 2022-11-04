@@ -1,4 +1,4 @@
-<%@page import="com.herbmall.common.Utility"%>
+<%@page import="com.mymvc.common.Utility"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.herbmall.reboard.model.ReBoardVO"%>
 <%@page import="com.herbmall.reboard.model.ReBoardDAO"%>
