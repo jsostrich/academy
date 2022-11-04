@@ -104,6 +104,7 @@ public class DispatcherServlet2 extends HttpServlet {
 			//담당자 메서드 호출해서 뷰페이지로 옮기기
 			String damdangmethod = cls.requestProcess(request, response);
 			System.out.println("담당 메서드의 뷰위치"+damdangmethod);
+			 
 			
 			if(cls.isRedirect()) {
 				System.out.println("리다이렉트!");
