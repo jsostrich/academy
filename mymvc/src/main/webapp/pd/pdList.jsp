@@ -1,9 +1,7 @@
+<%@page import="com.mymvc.pd.model.PdDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="com.mystudy.pd.model.PdDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="com.mystudy.pd.model.PdDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -13,20 +11,10 @@
 <title>pdList.jsp</title>
 </head>
 <body>
-<%
-	//[1] pdWrite_ok.jsp에서 성공하면 get방식으로 이동
-	//[2] pdWrite.jsp에서 [상품목록] 클릭하면 get방식으로 이동 
-	
-	//1. 요청 파라미터 읽어오기	
-	//2. db작업
-	PdDAO pdDao = new PdDAO();
-	List<PdDTO> list=null;
-	
-	try{
-		list=pdDao.selectAll();
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
+<%	
+	//뷰페이지 - request에서 결과를 읽어와서 화면에 출력한다.
+	List<PdDTO> list = (List<PdDTO>)request.getAttribute("list");
+
 	
 	//3. 결과 처리
 	DecimalFormat df = new DecimalFormat("#,###");
@@ -60,6 +48,6 @@
 	<!-- 반복끝 -->
 </table>
 <br>
-<a href="pdWrite.jsp">상품 등록</a>
+<a href="<%=request.getContextPath() %>/pd/pdWrite.do">상품 등록</a>
 </body>
 </html>

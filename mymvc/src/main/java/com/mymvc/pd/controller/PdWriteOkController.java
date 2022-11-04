@@ -36,7 +36,8 @@ public class PdWriteOkController implements Controller {
 			e.printStackTrace();
 		}
 		
-		//3. 결과 출력
+		//3. 결과 저장
+		//4. 이동할 페이지 리턴
 		return "/pd/pdList.do";
 	}
 

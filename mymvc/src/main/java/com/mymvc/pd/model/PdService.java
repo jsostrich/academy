@@ -36,5 +36,8 @@ public class PdService {
 	public List<PdDTO> selectByPdName(String pdName) throws SQLException {
 		return pdDao.selectByPdName(pdName);
 	}
-
+	
+	public List<PdDTO> selectAll() throws SQLException {
+		return pdDao.selectAll();
+	}
 }

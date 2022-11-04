@@ -20,7 +20,7 @@ http://localhost:9090/testsite/day2/test02.jsp -->
 </form>
 
 <br><br>
-<a href="pdList.jsp">상품 목록</a>
+<a href="<%=request.getContextPath() %>/pd/pdList.do">상품 목록</a>
 
 </body>
 </html>
