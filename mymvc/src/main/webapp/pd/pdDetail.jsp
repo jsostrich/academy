@@ -1,39 +1,32 @@
+<%@page import="com.mymvc.pd.model.PdDTO"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="com.mystudy.pd.model.PdDTO"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="com.mystudy.pd.model.PdDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%
-	//pdList.jsp ¿¡¼­ »óÇ°¸íÀ» Å¬¸¯ÇÏ¸é get¹æ½ÄÀ¸·Î ÀÌµ¿
+	//pdList.jsp ì—ì„œ ìƒí’ˆëª…ì„ í´ë¦­í•˜ë©´ getë°©ì‹ìœ¼ë¡œ ì´ë™
 	//=> http://localhost:9090/mystudy/pd/pdDetail.jsp?no=14
-	//1. ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÀÐ¾î¿À±â
-	String no=request.getParameter("no");
+	//1. ìš”ì²­ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
+	PdDTO dto = (PdDTO)request.getAttribute("dto");
 	
-	//2. dbÀÛ¾÷
-	PdDAO pdDao = new PdDAO();
-	PdDTO dto=null;	
-	try{
-		dto=pdDao.selectByNo(Integer.parseInt(no));
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
+	String no = request.getParameter("no");
 	
-	//3. °á°ú Ã³¸®
+	//2. dbìž‘ì—…
+	//3. ê²°ê³¼ ì²˜ë¦¬
 	DecimalFormat df = new DecimalFormat("#,###");
 	
 %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>pdDetail.jsp</title>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#aDel').click(function(){
-			if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
-				location.href="pdDelete.jsp?no=<%=no%>";
+			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+				location.href="pdDelete.jsp?no=<%=dto.getNo()%>";
 			}
 		});
 	});
@@ -41,15 +34,15 @@
 </head>
 <body>
 
-	<h1>»óÇ° »ó¼¼º¸±â</h1>
-	<p>¹øÈ£ : <%=no %></p>
-	<p>»óÇ°¸í : <%=dto.getPdName() %></p>
-	<p>°¡°Ý : <%=df.format(dto.getPrice()) %> ¿ø</p>
-	<p>µî·ÏÀÏ : <%=dto.getRegdate() %></p>
+	<h1>ìƒí’ˆ ìƒì„¸ë³´ê¸°</h1>
+	<p>ë²ˆí˜¸ : <%=dto.getNo() %></p>
+	<p>ìƒí’ˆëª… : <%=dto.getPdName() %></p>
+	<p>ê°€ê²© : <%=df.format(dto.getPrice()) %> ì›</p>
+	<p>ë“±ë¡ì¼ : <%=dto.getRegdate() %></p>
 	<br>
-	<a href="pdList.jsp">¸ñ·Ï</a> |
-	<a href="pdEdit.jsp?no=<%=no%>">¼öÁ¤</a> |
-	<a href="#" id="aDel">»èÁ¦</a>
+	<a href="<%=request.getContextPath() %>/pd/pdList.do">ëª©ë¡</a> |
+	<a href="<%=request.getContextPath() %>/pd/pdEdit.do?no=<%=dto.getNo()%>">ìˆ˜ì •</a> |
+	<a href="#" id="aDel">ì‚­ì œ</a>
 </body>
 </html>
 

@@ -36,7 +36,7 @@
 			<tr>
 				<td><%=dto.getNo() %></td>
 				<td>
-					<a href="pdDetail.jsp?no=<%=dto.getNo()%>">
+		<a href="<%=request.getContextPath() %>/pd/pdDetail.do?no=<%=dto.getNo()%>">
 						<%=dto.getPdName() %>
 					</a>
 				</td>
