@@ -1,26 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>pdWrite.jsp</title>
 </head>
 <body>
 <!-- 
 http://localhost:9090/mystudy/day2/pdWrite.jsp
 http://localhost:9090/testsite/day2/test02.jsp -->
-<h2>»óÇ° µî·Ï</h2>
+<h2>ìƒí’ˆ ë“±ë¡</h2>
 <form name="frmPd" method="post" 
 	action="<%=request.getContextPath() %>/pd/pdWrite_ok.do">
-	»óÇ°¸í:<input type="text" name="pdName" ><br>
-	°¡°Ý:<input type="text" name="price" ><br><br>
-	<input type="submit" value="µî·Ï">
-	<input type="reset" value="Ãë¼Ò">	
+	ìƒí’ˆëª…:<input type="text" name="pdName" ><br>
+	ê°€ê²©:<input type="text" name="price" ><br><br>
+	<input type="submit" value="ë“±ë¡">
+	<input type="reset" value="ì·¨ì†Œ">	
 </form>
 
 <br><br>
-<a href="pdList.jsp">»óÇ° ¸ñ·Ï</a>
+<a href="pdList.jsp">ìƒí’ˆ ëª©ë¡</a>
 
 </body>
 </html>

@@ -4,21 +4,21 @@
 <%@page import="com.mystudy.pd.model.PdDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mystudy.pd.model.PdDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>pdList.jsp</title>
 </head>
 <body>
 <%
-	//[1] pdWrite_ok.jsp¿¡¼­ ¼º°øÇÏ¸é get¹æ½ÄÀ¸·Î ÀÌµ¿
-	//[2] pdWrite.jsp¿¡¼­ [»óÇ°¸ñ·Ï] Å¬¸¯ÇÏ¸é get¹æ½ÄÀ¸·Î ÀÌµ¿ 
+	//[1] pdWrite_ok.jspì—ì„œ ì„±ê³µí•˜ë©´ getë°©ì‹ìœ¼ë¡œ ì´ë™
+	//[2] pdWrite.jspì—ì„œ [ìƒí’ˆëª©ë¡] í´ë¦­í•˜ë©´ getë°©ì‹ìœ¼ë¡œ ì´ë™ 
 	
-	//1. ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÀÐ¾î¿À±â	
-	//2. dbÀÛ¾÷
+	//1. ìš”ì²­ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°	
+	//2. dbìž‘ì—…
 	PdDAO pdDao = new PdDAO();
 	List<PdDTO> list=null;
 	
@@ -28,20 +28,20 @@
 		e.printStackTrace();
 	}
 	
-	//3. °á°ú Ã³¸®
+	//3. ê²°ê³¼ ì²˜ë¦¬
 	DecimalFormat df = new DecimalFormat("#,###");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 %>
-<h1>»óÇ° ¸ñ·Ï</h1>
+<h1>ìƒí’ˆ ëª©ë¡</h1>
 <table border="1" style="width:500px">
 	<Tr>
-		<th>¹øÈ£</th>
-		<th>»óÇ°¸í</th>
-		<th>°¡°Ý</th>
-		<th>µî·ÏÀÏ</th>
+		<th>ë²ˆí˜¸</th>
+		<th>ìƒí’ˆëª…</th>
+		<th>ê°€ê²©</th>
+		<th>ë“±ë¡ì¼</th>
 	</Tr>
-	<!-- ¹Ýº¹½ÃÀÛ -->
+	<!-- ë°˜ë³µì‹œìž‘ -->
 	<%
 		for(int i=0;i<list.size();i++){
 			PdDTO dto=list.get(i); %>
@@ -57,9 +57,9 @@
 				<td><%=sdf.format(dto.getRegdate()) %></td>
 			</tr>
 	<%	}%>	
-	<!-- ¹Ýº¹³¡ -->
+	<!-- ë°˜ë³µë -->
 </table>
 <br>
-<a href="pdWrite.jsp">»óÇ° µî·Ï</a>
+<a href="pdWrite.jsp">ìƒí’ˆ ë“±ë¡</a>
 </body>
 </html>
