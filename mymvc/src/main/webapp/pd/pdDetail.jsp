@@ -35,13 +35,13 @@
 <body>
 
 	<h1>상품 상세보기</h1>
-	<p>번호 : <%=dto.getNo() %></p>
+	<p>번호 : <%=no %></p>
 	<p>상품명 : <%=dto.getPdName() %></p>
 	<p>가격 : <%=df.format(dto.getPrice()) %> 원</p>
 	<p>등록일 : <%=dto.getRegdate() %></p>
 	<br>
 	<a href="<%=request.getContextPath() %>/pd/pdList.do">목록</a> |
-	<a href="<%=request.getContextPath() %>/pd/pdEdit.do?no=<%=dto.getNo()%>">수정</a> |
+	<a href="<%=request.getContextPath() %>/pd/pdEdit.do?no=<%=no%>">수정</a> |
 	<a href="#" id="aDel">삭제</a>
 </body>
 </html>

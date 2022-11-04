@@ -1,41 +1,41 @@
 <%@page import="com.mymvc.pd.model.PdService"%>
 <%@page import="com.mymvc.pd.model.PdDTO"%>
 <%@page import="java.sql.SQLException"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%
-	//pdDetail.jsp¿¡¼­ [¼öÁ¤]Å¬¸¯ÇÏ¸é get¹æ½ÄÀ¸·Î ÀÌµ¿
+	//pdDetail.jspì—ì„œ [ìˆ˜ì •]í´ë¦­í•˜ë©´ getë°©ì‹ìœ¼ë¡œ ì´ë™
 	//=> http://localhost:9090/mystudy/pd/pdEdit.jsp?no=16
-	//1. ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÀĞ¾î¿À±â
+	//1. ìš”ì²­ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	
 	PdDTO dto = (PdDTO)request.getAttribute("pdDto");
 	
 	String no = request.getParameter("no");
-	//3. °á°ú Ã³¸®
+	//3. ê²°ê³¼ ì²˜ë¦¬
 	
 %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h2>»óÇ° ¼öÁ¤</h2>
+<h2>ìƒí’ˆ ìˆ˜ì •</h2>
 <form name="frmPd" method="post" 
 	action="<%=request.getContextPath() %>/pd/pdEdit_ok.do">
-	<!-- ¼öÁ¤½Ã no°¡ ÇÊ¿äÇÏ¹Ç·Î hidden ÇÊµå¿¡ ³Ö¾î¼­ º¸³½´Ù -->
+	<!-- ìˆ˜ì •ì‹œ noê°€ í•„ìš”í•˜ë¯€ë¡œ hidden í•„ë“œì— ë„£ì–´ì„œ ë³´ë‚¸ë‹¤ -->
 	<input type="hidden" name="no" value="<%=no%>">
 		
-	»óÇ°¸í:<input type="text" name="pdName" 
+	ìƒí’ˆëª…:<input type="text" name="pdName" 
 		value="<%=dto.getPdName()%>"><br>
-	°¡°İ:<input type="text" name="price" 
+	ê°€ê²©:<input type="text" name="price" 
 		value="<%=dto.getPrice()%>"><br><br>
-	<input type="submit" value="¼öÁ¤">
-	<input type="reset" value="Ãë¼Ò">	
+	<input type="submit" value="ìˆ˜ì •">
+	<input type="reset" value="ì·¨ì†Œ">	
 </form>
 
 <br><br>
-<a href="<%=request.getContextPath() %>/pd/pdList.do">»óÇ° ¸ñ·Ï</a>
+<a href="<%=request.getContextPath() %>/pd/pdList.do">ìƒí’ˆ ëª©ë¡</a>
 </body>
 </html>

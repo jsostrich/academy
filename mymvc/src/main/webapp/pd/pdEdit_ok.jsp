@@ -1,25 +1,25 @@
 <%@page import="com.mystudy.pd.model.PdDTO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.mystudy.pd.model.PdDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>pdEdit_ok.jsp</title>
 </head>
 <body>
 <%
-	//pdEdit.jsp¿¡¼­ post¹æ½ÄÀ¸·Î ¼­ºê¹ÔµÊ
-	request.setCharacterEncoding("euc-kr");
+	//pdEdit.jspì—ì„œ postë°©ì‹ìœ¼ë¡œ ì„œë¸Œë°‹ë¨
+	request.setCharacterEncoding("utf-8");
 
-	//1. ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÀĞ¾î¿À±â
+	//1. ìš”ì²­ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	String pdName =request.getParameter("pdName");
 	String price =request.getParameter("price");
 	String no =request.getParameter("no");
 	
-	//2. dbÀÛ¾÷
+	//2. dbì‘ì—…
 	PdDAO pdDao = new PdDAO();
 	PdDTO dto = new PdDTO();
 	dto.setNo(Integer.parseInt(no));
@@ -29,11 +29,11 @@
 	try{
 		int cnt=pdDao.updatePd(dto);
 		
-		//3. °á°ú Ã³¸®
+		//3. ê²°ê³¼ ì²˜ë¦¬
 		if(cnt>0){
 			response.sendRedirect("pdDetail.jsp?no="+no);
 		}else{
-			System.out.println("»óÇ° ¼öÁ¤½ÇÆĞ");
+			System.out.println("ìƒí’ˆ ìˆ˜ì •ì‹¤íŒ¨");
 			response.sendRedirect("pdEdit.jsp?no="+no);			
 		}
 	}catch(SQLException e){
