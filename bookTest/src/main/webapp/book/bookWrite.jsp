@@ -1,21 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookWrite.jsp</title>
 </head>
 <body>
 <!-- http://localhost:9090/mystudy/book/bookWrite.jsp -->
-<h1>Ã¥ µî·Ï</h1>
-<form name="bookResister" method="post" action="bookWrite_ok.jsp">
-	<p>Ã½Á¦¸ñ: <input type="text" name="bookName"></p>
-	<p>°¡°Ý: <input type="text" name="bookPrice"></p>
-	<p>ÆÛºí¸®¼Å: <input type="text" name="pub"></p>
-	<input type="submit" value="µî·Ï"> <input type="reset" value="Ãë¼Ò">
+<h1>ì±… ë“±ë¡</h1>
+<form name="bookResister" method="post" 
+	action="<%=request.getContextPath() %>/book/bookWrite_ok.do">
+	<p>ì²µì œëª©: <input type="text" name="bookName"></p>
+	<p>ê°€ê²©: <input type="text" name="bookPrice"></p>
+	<p>í¼ë¸”ë¦¬ì…”: <input type="text" name="pub"></p>
+	<input type="submit" value="ë“±ë¡"> <input type="reset" value="ì·¨ì†Œ">
 </form>
 	<br>
-	<a href="bookList.jsp">Ã¥ ¸ñ·Ï</a>
+	<a href="bookList.jsp">ì±… ëª©ë¡</a>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.List"%>
 <%@page import="com.book.model.BookDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookList.jsp</title>
 <style type="text/css">
 	body{
@@ -20,19 +20,19 @@
 </head>
 <body>
 <%
-	//ÀÌ°Ô bookWrite_ok¿¡¼­ ³Ñ¾î¿Â ÀÚ·áµéÀÓ
-	//ÀÎÄÚµù
-	request.setCharacterEncoding("euc-kr");
+	//ì´ê²Œ bookWrite_okì—ì„œ ë„˜ì–´ì˜¨ ìžë£Œë“¤ìž„
+	//ì¸ì½”ë”©
+	request.setCharacterEncoding("UTF-8");
 
 	String condition = request.getParameter("searchCondition");
 	String keyword = request.getParameter("searchKeyword");
 	
 	if(keyword==null) keyword="";
 	
-	//1.¿äÃ»ÇÑ ÆÄ¶ó¹ÌÅÍ ÀÐ¾î¿À±â
+	//1.ìš”ì²­í•œ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	BookDAO bookDao = new BookDAO();
 	List<BookDTO> list = null;
-	//2 dbÀÛ¾÷
+	//2 dbìž‘ì—…
 	try{
 		list=bookDao.selectAll(condition, keyword);
 	}catch(SQLException e){
@@ -42,7 +42,7 @@
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	
-	///ÆäÀÌÁö ÀÌº¥Æ®
+	///íŽ˜ì´ì§€ ì´ë²¤íŠ¸
 	int currentPage = 1;
 	
 	if(request.getParameter("currentPage")!=null){
@@ -66,19 +66,19 @@
 	
 	
 %>
-<h1>Ã¥ ¸ñ·Ï</h1>
+<h1>ì±… ëª©ë¡</h1>
 <%
 	if(keyword!=null && !keyword.isEmpty()){%>
-		<p>°Ë»ö¾î : <%=keyword %>, <%=list.size() %>°Ç °Ë»öµÇ¾ú½À´Ï´Ù.</p>
+		<p>ê²€ìƒ‰ì–´ : <%=keyword %>, <%=list.size() %>ê±´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.</p>
 	<%}
 %>
 <table border="1" style="width : 500px;border-collapse: collapse;" >
 	<tr>
-		<th>¹øÈ£</th>
-		<th>Ã¥ ÀÌ¸§</th>
-		<th>°¡°Ý</th>
-		<th>ÆÛºí¸®¼Å</th>
-		<th>µî·ÏÀÏ</th>
+		<th>ë²ˆí˜¸</th>
+		<th>ì±… ì´ë¦„</th>
+		<th>ê°€ê²©</th>
+		<th>í¼ë¸”ë¦¬ì…”</th>
+		<th>ë“±ë¡ì¼</th>
 	</tr>
 	<%
 	for(int i =0;i<pageSize;i++){
@@ -97,9 +97,9 @@
 	<%}
 	%>
 </table>
-	<a href="bookWrite.jsp">µî·ÏÇÏ´Â°÷À¸·Î µ¹¾Æ°¡±â</a>
+	<a href="bookWrite.jsp">ë“±ë¡í•˜ëŠ”ê³³ìœ¼ë¡œ ëŒì•„ê°€ê¸°</a>
 	<br>
-	<a>Ã¥ Á¦¸ñÀ» ´©¸£¸é »ó¼¼ Á¤º¸°¡ ³ª¿É´Ï´Ù</a><br>
+	<a>ì±… ì œëª©ì„ ëˆ„ë¥´ë©´ ìƒì„¸ ì •ë³´ê°€ ë‚˜ì˜µë‹ˆë‹¤</a><br>
 	<%
 		if(firstPage>1){%>
 			<a 
@@ -131,17 +131,17 @@
 			<%if("title".equals(condition)){%>
 				selected="selected" 
 			<%} %>
-			>Ã¥ Á¦¸ñ</option>
+			>ì±… ì œëª©</option>
 			<option value="publisher"
 			<%if("publisher".equals(condition)){%>
 				selected="selected" 
 			<%} %>
-			>ÃâÆÇ»ç</option>
+			>ì¶œíŒì‚¬</option>
 		</select>
-		<input type="text" name="searchKeyword" title="°Ë»ö¾î ÀÔ·Â"
+		<input type="text" name="searchKeyword" title="ê²€ìƒ‰ì–´ ìž…ë ¥"
 		value="<%= keyword%>">
-		<input type="submit" value="°Ë»ö"><br>
-		<a href="bookList.jsp"><input type="button" value="ÃÊ±â·Î µ¹¾Æ°¡±â" ></a>
+		<input type="submit" value="ê²€ìƒ‰"><br>
+		<a href="bookList.jsp"><input type="button" value="ì´ˆê¸°ë¡œ ëŒì•„ê°€ê¸°" ></a>
 		</form>
 	</div>
 </body>

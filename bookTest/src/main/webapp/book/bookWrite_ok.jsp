@@ -1,19 +1,19 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.book.model.BookDAO"%>
 <%@page import="com.book.model.BookDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookWrite_ok.jsp</title>
 </head>
 <body>
 	<%
-	//¿œ¥‹ ¿Œƒ⁄µ˘
-	request.setCharacterEncoding("euc-kr");
-	//√≥∏Æ«œ±‚
+	//ÏùºÎã® Ïù∏ÏΩîÎî©
+	request.setCharacterEncoding("UTF-8");
+	//Ï≤òÎ¶¨ÌïòÍ∏∞
 	String bookName=request.getParameter("bookName");
 	String bookPrice=request.getParameter("bookPrice");
 	String pub=request.getParameter("pub");
@@ -30,7 +30,7 @@
 		if(cnt>0){
 			response.sendRedirect("bookList.jsp");
 		}else{
-			System.out.println("√• µÓ∑œ Ω«∆–");
+			System.out.println("Ï±Ö Îì±Î°ù Ïã§Ìå®");
 			response.sendRedirect("bookWrite.jsp");
 		}
 	}catch(SQLException e){

@@ -1,34 +1,34 @@
 <%@page import="com.book.model.BookDAO"%>
 <%@page import="java.sql.SQLException"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookDelete.jsp</title>
 </head>
 <body>
 <%
-	//http://localhost:9090/mystudy/book/bookDetail.jsp?no=19¿¡¼­ »èÁ¦¹öÆ° ´­·¯¼­ ÁøÇà
-	//1. ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÁøÇà
+	//http://localhost:9090/mystudy/book/bookDetail.jsp?no=19ì—ì„œ ì‚­ì œë²„íŠ¼ ëˆŒëŸ¬ì„œ ì§„í–‰
+	//1. ìš”ì²­ íŒŒë¼ë¯¸í„° ì§„í–‰
 	String no = request.getParameter("no");
 	
-	//2.dbÃ³¸®
+	//2.dbì²˜ë¦¬
 	BookDAO dao = new BookDAO();
 	try{
 		int cnt = dao.delete(Integer.parseInt(no));
 		if(cnt>0){
-			System.out.println("»èÁ¦¿Ï·á");
+			System.out.println("ì‚­ì œì™„ë£Œ");
 			response.sendRedirect("bookList.jsp");
 		}else{
-			System.out.println("»èÁ¦½ÇÆÐ");
+			System.out.println("ì‚­ì œì‹¤íŒ¨");
 			response.sendRedirect("bookDetail.jsp?no="+no);
 		}
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
-	//3.°á°úÃâ·Â
+	//3.ê²°ê³¼ì¶œë ¥
 %>
 </body>
 </html>

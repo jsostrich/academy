@@ -1,22 +1,22 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.book.model.BookDTO"%>
 <%@page import="com.book.model.BookDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
-	//bookList¿¡¼­ ÀÌ¸§À» Å¬¸¯ÇØ¼­ ¿À´Â°÷
+	//bookListì—ì„œ ì´ë¦„ì„ í´ë¦­í•´ì„œ ì˜¤ëŠ”ê³³
 	//=>http://localhost:9090/mystudy/book/bookDetail.jsp?no=
 	
-	//1.¿äÃ» ÆÄ¶ó¹ÌÅÍ ÀĞ¾î¿À±â
+	//1.ìš”ì²­ íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	String no = request.getParameter("no");
 	
 	if(no==null || no.isEmpty()){%>
 		<<script type="text/javascript">
-			alert('Àß¸øµÈ url');
+			alert('ì˜ëª»ëœ url');
 		</script>
 	<% return;
 	}
-	//dbÃ³¸®
+	//dbì²˜ë¦¬
 	BookDAO dao = new BookDAO();
 	BookDTO dto = null;
 	
@@ -29,13 +29,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookDetail.jsp</title>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#bookdel').click(function(){
-			if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+			if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 				location.href="bookDelete.jsp?no=<%=no%>";
 			}else{
 				event.preventDefault();
@@ -45,15 +45,15 @@
 </script>
 </head>
 <body>
-<h1>»óÇ° »ó¼¼º¸±â</h1>
-<a>¹øÈ£ : <%=no %></a><br>
-<a>Ã¥¸í : <%=dto.getTitle() %></a><br>
-<a>°¡°İ : <%=dto.getPrice() %></a><br>
-<a>ÃâÆÇ»ç : <%=dto.getPublisher() %></a><br>
-<a>µî·ÏÀÏ : <%=dto.getJoindate() %></a><br>
+<h1>ìƒí’ˆ ìƒì„¸ë³´ê¸°</h1>
+<a>ë²ˆí˜¸ : <%=no %></a><br>
+<a>ì±…ëª… : <%=dto.getTitle() %></a><br>
+<a>ê°€ê²© : <%=dto.getPrice() %></a><br>
+<a>ì¶œíŒì‚¬ : <%=dto.getPublisher() %></a><br>
+<a>ë“±ë¡ì¼ : <%=dto.getJoindate() %></a><br>
 <br>
-<a href="bookList.jsp">¸ñ·Ï</a>
-<a href="bookEdit.jsp?no=<%=no%>">¼öÁ¤</a>
-<a href="bookDelete.jsp?no=<%=no%>" id="bookdel">»èÁ¦</a>
+<a href="bookList.jsp">ëª©ë¡</a>
+<a href="bookEdit.jsp?no=<%=no%>">ìˆ˜ì •</a>
+<a href="bookDelete.jsp?no=<%=no%>" id="bookdel">ì‚­ì œ</a>
 </body>
 </html>

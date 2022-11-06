@@ -2,25 +2,25 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.book.model.BookDAO"%>
 <%@page import="com.book.model.BookDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookEdit_ok.jsp</title>
 </head>
 <body>
 <%
-	//ºÏ¿¡µğÅÍ¿¡¼­ Á¤º¸¸¦ ÀÔ·ÂÇÏ°í ¼öÁ¤À» ´©¸£¸é ÀÏ·Î¿Â´Ù
-	//ÆûÀ¸·Î ¿ÓÀ¸´Ï ÀÎÄÚµùÇÏÀÚ
-	request.setCharacterEncoding("euc-kr");
-	//1.ÆÄ¶ó¹ÌÅÍ ÀĞ¾î¿À±â
+	//ë¶ì—ë””í„°ì—ì„œ ì •ë³´ë¥¼ ì…ë ¥í•˜ê³  ìˆ˜ì •ì„ ëˆ„ë¥´ë©´ ì¼ë¡œì˜¨ë‹¤
+	//í¼ìœ¼ë¡œ ì™“ìœ¼ë‹ˆ ì¸ì½”ë”©í•˜ì
+	request.setCharacterEncoding("UTF-8");
+	//1.íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	String no = request.getParameter("no");
 	String bookName = request.getParameter("bookName");
 	String price = request.getParameter("price");
 	String pub = request.getParameter("pub");
-	//2.dbÃ³¸®
+	//2.dbì²˜ë¦¬
 	BookDTO dto = new BookDTO();
 	BookDAO dao = new BookDAO();
 	dto.setNo(Integer.parseInt(no));
@@ -31,12 +31,12 @@
 	try{
 		int cnt = dao.update(dto);
 		
-	//3.°á°úÃ³¸®
+	//3.ê²°ê³¼ì²˜ë¦¬
 		if(cnt>0){
-			System.out.println("¾÷µ¥ÀÌÆ® ¿Ï·á");
+			System.out.println("ì—…ë°ì´íŠ¸ ì™„ë£Œ");
 			response.sendRedirect("bookDetail.jsp?no="+no);
 		}else{
-			System.out.println("¾÷µ¥ÀÌÆ® ½ÇÆĞ");
+			System.out.println("ì—…ë°ì´íŠ¸ ì‹¤íŒ¨");
 			response.sendRedirect("bookEdit.jsp?no="+no);
 		}
 	}catch(SQLException e){

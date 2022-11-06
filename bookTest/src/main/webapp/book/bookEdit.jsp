@@ -1,40 +1,40 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.book.model.BookDAO"%>
 <%@page import="com.book.model.BookDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>bookEdit.jsp</title>
 </head>
 <body>
 <%
-	//»ó¼¼ÆäÀÌÁö¿¡¼­ ¼öÁ¤¹öÆ° ´­·¯¼­ ¿ÓÀ½
+	//ìƒì„¸íŽ˜ì´ì§€ì—ì„œ ìˆ˜ì •ë²„íŠ¼ ëˆŒëŸ¬ì„œ ì™“ìŒ
 	//http://localhost:9090/mystudy/book/bookEdit.jsp?no=13
-	//1.ÆÄ¶ó¹ÌÅÍ ÀÐ¾î¿À±â
+	//1.íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	String no=request.getParameter("no");
 
-	//2.dbÃ³¸®
+	//2.dbì²˜ë¦¬
 	BookDTO dto = null;
 	BookDAO dao = new BookDAO();
 	
-	//3.°á°úÃâ·Â
+	//3.ê²°ê³¼ì¶œë ¥
 	try{
 		dto = dao.selectNO(Integer.parseInt(no));
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
 %>
-<h2>»óÇ° ¼öÁ¤</h2>
+<h2>ìƒí’ˆ ìˆ˜ì •</h2>
 <form name="fred" method="post" action="bookEdit_ok.jsp">
 <input type="hidden" name="no" value="<%=no %>"><br>
-   Ã¥Á¦¸ñ:<input type="text" name="bookName" value=" <%=dto.getTitle() %>" ><br>
-   °¡°Ý:<input type="text" name="price" value="<%=dto.getPrice() %>"><br>
-   ÆÛºí¸®¼Å:<input type="text" name="pub" value=" <%=dto.getPublisher()%>"><br><br>
-   <input type="submit" value="µî·Ï">
-   <input type="button" value="Ãë¼Ò">   
+   ì±…ì œëª©:<input type="text" name="bookName" value=" <%=dto.getTitle() %>" ><br>
+   ê°€ê²©:<input type="text" name="price" value="<%=dto.getPrice() %>"><br>
+   í¼ë¸”ë¦¬ì…”:<input type="text" name="pub" value=" <%=dto.getPublisher()%>"><br><br>
+   <input type="submit" value="ë“±ë¡">
+   <input type="button" value="ì·¨ì†Œ">   
 </form>
 </body>
 </html>
