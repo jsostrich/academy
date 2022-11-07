@@ -87,7 +87,7 @@
 			<tr  style="text-align:center">
 				<td><%=vo.getNo() %></td>
 				<td style="text-align:left">
-				<a href="countUpdate.jsp?no=<%=vo.getNo() %>">
+<a href="<%=request.getContextPath() %>/board/countUpdate.do?no=<%=vo.getNo() %>">
 					<%=vo.getTitle() %></a></td>
 				<td><%=vo.getName() %></td>
 				<td><%=sdf.format(vo.getRegdate()) %></td>

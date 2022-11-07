@@ -1,6 +1,5 @@
+<%@page import="com.mymvc.board.model.BoardVO"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="com.herbmall.board.model.BoardVO"%>
-<%@page import="com.herbmall.board.model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
@@ -25,23 +24,8 @@
 	//=> http://localhost:9090/herbmall/board/edit.jsp?no=3
 	//1
 	String no=request.getParameter("no");
-	if(no==null || no.isEmpty()){ %>
-		<script type="text/javascript">
-			alert('잘못된 url입니다.');
-			location.href="list.jsp";
-		</script>
-	<%	return;
-	}
+	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	
-	//2
-	BoardDAO dao = new BoardDAO();
-	BoardVO vo = null;
-	
-	try {
-	   vo = dao.selectByNo(Integer.parseInt(no));
-	} catch(SQLException e) {
-	   e.printStackTrace();
-	}
 	
 	//3
 	String email=vo.getEmail();
