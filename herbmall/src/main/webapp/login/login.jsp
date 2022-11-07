@@ -14,7 +14,7 @@
 	}
 %>
 <article class="simpleForm">
-	<form name="frmLogin" method="post"	action="login_ok.jsp">
+	<form name="frmLogin" method="post" action="login_ok.jsp">
 		<fieldset>
 			<legend>로그인</legend>
 			<div>
