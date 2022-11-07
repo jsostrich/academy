@@ -161,14 +161,13 @@ public class BoardDAO {
 			//3
 			String sql="update board"
 					+ " set name=?,title=?,email=?,content=?"
-					+ " where no=? and pwd=?";
+					+ " where no=? ";
 			ps=con.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getTitle());
 			ps.setString(3, vo.getEmail());
 			ps.setString(4, vo.getContent());
 			ps.setInt(5, vo.getNo());
-			ps.setString(6, vo.getPwd());
 
 			//4
 			int cnt=ps.executeUpdate();
@@ -179,8 +178,41 @@ public class BoardDAO {
 			pool.dbClose(ps, con);
 		}
 	}
-
-	public int deleteBoard(int no, String pwd) throws SQLException{
+	
+	public boolean checkPwd(int no, String pwd) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="select pwd from board where no=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, no);
+			
+			//4
+			boolean result=false;
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String dbPwd=rs.getString("pwd");
+				if(dbPwd.equals(pwd)) {
+					result=true; //비밀번호 일치하면
+				}
+			}
+			
+			System.out.println("비밀번호 체크 결과 result="+result
+					+", 매개변수 no="+no+", pwd="+pwd);
+			return result;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
+	public int deleteBoard(int no) throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		
@@ -190,15 +222,13 @@ public class BoardDAO {
 			
 			//[3] ps
 			String sql="delete from board" 
-					+" where no=? and pwd=?";
+					+" where no=? ";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, no);
-			ps.setString(2, pwd);
 			
 			//[4] 실행
 			int cnt= ps.executeUpdate();
-			System.out.println("글 삭제 결과 cnt="+cnt+",입력값 no: "+no 
-					+", pwd="+pwd);
+			System.out.println("글 삭제 결과 cnt="+cnt+",입력값 no: "+no );
 			
 			return cnt;
 		}finally{

@@ -36,7 +36,8 @@
 	
 %>
 	<div class="divForm">
-		<form name="frmEdit" method="post" action="edit_ok.jsp">
+		<form name="frmEdit" method="post" 
+		action="<%=request.getContextPath() %>/board/edit_ok.do">
 			<!-- 수정시 no가 필요하므로 hidden필드에 넣어준다 -->
 			<input type="hidden" name="no" value="<%=no%>"/>
 			
@@ -68,7 +69,7 @@
 				</div>
 				<div class="center">
 					<input type="submit" value="수정" /> <input type="Button" value="글목록"
-						onclick="location.href	='list.jsp'" />
+						onclick="location.href	='list.do'" />
 				</div>
 			</fieldset>
 		</form>

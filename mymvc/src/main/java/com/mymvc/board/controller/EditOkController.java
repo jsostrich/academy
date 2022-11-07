@@ -9,48 +9,59 @@ import com.controller.Controller;
 import com.mymvc.board.model.BoardService;
 import com.mymvc.board.model.BoardVO;
 
-public class EditOkController implements Controller{
+public class EditOkController implements Controller {
 
 	@Override
-	public String requestProcess(HttpServletRequest request, 
-			HttpServletResponse response) throws Throwable {
+	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		/*
+		 	[7] 수정 처리 - update
+			/board/edit_ok.do = > DispatcherServlet => EditOkController
+			/detail.do로 redirect
+		*/
+		//1
+		String title=request.getParameter("title");
+		String name=request.getParameter("name");
+		String pwd=request.getParameter("pwd");
+		String email=request.getParameter("email");
+		String content=request.getParameter("content");
+		String no=request.getParameter("no");
 		
-		BoardVO vo =(BoardVO)request.getAttribute("vo");
-		String title = request.getParameter("title");
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		String email = request.getParameter("email");
-		String content = request.getParameter("content");
-		
-		BoardService service = new BoardService();
-		
-		vo.setTitle(title);
-		vo.setName(name);
-		vo.setPwd(pwd);
-		vo.setEmail(email);
-		vo.setContent(content);
-		
-		int cnt = 0;
-		
+		//2
+		BoardService boardService=new BoardService();		
+		String msg="글 수정 실패", url="/board/edit.do?no="+no;
 		try {
-			cnt = service.updateBoard(vo);
-			if(!(cnt>0)) {
-				request.setAttribute("msg", "비밀번호가 맞지 않아요");
-				request.setAttribute("url", "/board/detail.jsp?no="+vo.getNo());
+			if(boardService.checkPwd(Integer.parseInt(no), pwd)) {
+				BoardVO vo = new BoardVO();
+				vo.setContent(content);
+				vo.setEmail(email);
+				vo.setName(name);
+				vo.setNo(Integer.parseInt(no));
+				vo.setPwd(pwd);
+				vo.setTitle(title);
 				
-				return "common/message.jsp";
+				int cnt=boardService.updateBoard(vo);
+				if(cnt>0) {
+					msg="글 수정되었습니다.";
+					url="/board/detail.do?no="+no;
+				}
+			}else {
+				msg="비밀번호가 일치하지 않습니다.";
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		//3
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		
+		//4		
+		return "/common/message.jsp";
 	}
 
 	@Override
 	public boolean isRedirect() {
-		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 }

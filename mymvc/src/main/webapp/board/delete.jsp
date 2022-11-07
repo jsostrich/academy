@@ -73,7 +73,8 @@
 </head>
 <body>
 <div class="divForm">
-	<form name="frmDelete" method="post" action="delete_ok.jsp" >
+	<form name="frmDelete" method="post" 
+	action="<%=request.getContextPath() %>/board/delete_ok.do" >
 		<!-- 삭제시 no가 필요하므로 hidden필드에 넣는다 -->
 		<input type="hidden" name="no" value="<%=no%>">
 		<fieldset>
@@ -88,7 +89,7 @@
 	        <div class="center">
 	            <input type ="submit"  value="삭제" />
 	            <input type = "Button" value="글목록" 
-                	OnClick="location.href='list.jsp'" />
+                	OnClick="location.href='list.do'" />
 	        </div>
 	    </fieldset>
     </form>

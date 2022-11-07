@@ -32,12 +32,17 @@ public class BoardService {
 		return boardDao.updateBoard(vo);
 	}
 
-	public int deleteBoard(int no, String pwd) throws SQLException{
-		return boardDao.deleteBoard(no, pwd);		
+	public int deleteBoard(int no) throws SQLException{
+		return boardDao.deleteBoard(no);		
 	}
 	
 	public int updateReadCount(int no) throws SQLException {
 		return boardDao.updateReadCount(no);
 	}
+	
+	public boolean checkPwd(int no, String pwd) throws SQLException {
+		return boardDao.checkPwd(no, pwd);
+	}
+
 	
 }
