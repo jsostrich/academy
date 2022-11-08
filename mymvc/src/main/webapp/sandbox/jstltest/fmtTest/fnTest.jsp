@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>fn</h1>
-	<h2>abcd=>ABCD로 바꾸기</h2>
+	<h2>abcd=>Abcd로 바꾸기</h2>
 	<c:set var="str" value="abcd" />
 	<p>str 변수의 값 : ${str } </p>
 	<p>replace 함수 사용 후 : ${fn:replace(str, "a", "A") } </p>
