@@ -6,14 +6,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean name="articleService"
-		class="mysite.spring.di.ArticleServiceImpl">
+	<bean name="articleService2"
+		class="sprindi.AricleServiceImpl2">
 		<constructor-arg>
 			<ref bean="articleDao" />
 		</constructor-arg>
 	</bean>
 
-	<bean name="articleDao" class="mysite.spring.di.MySQLArticleDao">
+	<bean name="articleDao" class="sprindi.MySqlArticleDAO">
 	</bean>
 
 
