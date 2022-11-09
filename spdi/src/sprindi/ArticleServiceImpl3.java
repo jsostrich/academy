@@ -11,9 +11,7 @@ public class ArticleServiceImpl3 implements ArticleService{
 	@Override
 	public void write(ArticleVO vo) {
 		System.out.println("ArticleServiceImpl3 - write()메서드 호출!!!");
+		
+		articleDao.insert(vo);
 	}
-	
-	
-	
-	
 }

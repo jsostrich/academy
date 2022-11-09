@@ -4,7 +4,7 @@ public class ArticleServiceImpl1 implements ArticleService{
 	private ArticleDAO dao;
 	
 	public ArticleServiceImpl1() {
-		dao = new MySqlArticleDAO(); 
+		dao = new OracleArticleDAO(); 
 	}
 	
 	@Override

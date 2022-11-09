@@ -34,6 +34,7 @@ public class Main {
 		service2.write(vo2);
 		
 		//
+		/*
 		Resource resource = 
 				new ClassPathResource("applicationContext.xml");
 		BeanFactory factory = new XmlBeanFactory(resource);
@@ -41,9 +42,16 @@ public class Main {
 		service2=(ArticleService) factory.getBean("articleService2");
 		
 		service2.write(vo2);
+		*/
 		
+		//3. setter를 이용한 종속 객체 주입
+		ArticleService service3 = 
+				(ArticleService)context.getBean("articleService3");
 		
-		
+		ArticleVO vo3 = new ArticleVO();
+		vo3.setNo(3);
+		vo3.setTitle("[3] setter를 이용한 종속 객체 주입");
+		service3.write(vo3);
 		
 		
 		
