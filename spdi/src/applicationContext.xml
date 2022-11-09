@@ -7,13 +7,24 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean name="articleService2"
-		class="sprindi.AricleServiceImpl2">
+		class="sprindi.ArticleServiceImpl2">
 		<constructor-arg>
-			<ref bean="articleDao" />
+			<ref bean="myarticleDao" />
 		</constructor-arg>
 	</bean>
-
-	<bean name="articleDao" class="sprindi.MySqlArticleDAO">
+	
+	<!-- <bean name="articleService3"
+		class="sprindi.ArticleServiceImpl3">
+		<property name="articleDao" ref="myArticleDao"></property>
+	</bean> -->
+	
+	<bean name="articleService3"
+		class="sprindi.ArticleServiceImpl3" 
+		p:articleDao-ref="myArticleDao">
+	</bean>
+	
+	
+	<bean name="myarticleDao" class="sprindi.MySqlArticleDAO">
 	</bean>
 
 

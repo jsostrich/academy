@@ -1,9 +1,9 @@
 package sprindi;
 
-public class AricleServiceImpl1 implements ArticleService{
+public class ArticleServiceImpl1 implements ArticleService{
 	private ArticleDAO dao;
 	
-	public AricleServiceImpl1() {
+	public ArticleServiceImpl1() {
 		dao = new MySqlArticleDAO(); 
 	}
 	

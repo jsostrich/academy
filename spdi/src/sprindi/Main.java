@@ -10,7 +10,7 @@ import org.springframework.core.io.Resource;
 public class Main {
 
 	public static void main(String[] args) {
-		ArticleService service1 = new AricleServiceImpl1();
+		ArticleService service1 = new ArticleServiceImpl1();
 		ArticleVO vo = new ArticleVO();
 		vo.setNo(1);
 		vo.setTitle("[1] 기존 방식 이용!");
@@ -41,6 +41,11 @@ public class Main {
 		service2=(ArticleService) factory.getBean("articleService2");
 		
 		service2.write(vo2);
+		
+		
+		
+		
+		
 		
 	}
 

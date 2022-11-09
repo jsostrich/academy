@@ -1,10 +1,10 @@
 package sprindi;
 
-public class AricleServiceImpl2 implements ArticleService{
+public class ArticleServiceImpl2 implements ArticleService{
 	private ArticleDAO articleDao;
 
 	//DI - 생성자를 이용한 종속객체 주입
-	public AricleServiceImpl2(ArticleDAO articleDao) {
+	public ArticleServiceImpl2(ArticleDAO articleDao) {
 		this.articleDao = articleDao;
 	}
 
