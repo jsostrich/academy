@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//delete.jsp에서 [삭제]클릭하면 get방식으로 이동
 	//=> http://localhost:9090/herbmall/board/delete.jsp?no=4
 	//1
-	/* 
 	String no=request.getParameter("no");
-	if(no==null || no.isEmpty()){  */%>
-	<!-- 	<script type="text/javascript">
+	if(no==null || no.isEmpty()){ %>
+		<script type="text/javascript">
 			alert('잘못된 url');
 			location.href="list.jsp";
-		</script> -->
+		</script>
 		
-		<%/* return;
+		<%return;
+	}
 	//2
-	} */
 	//3
 	
 %>    
@@ -24,10 +22,10 @@
 <head>
 <meta charset="utf-8">
 <title>자유게시판 글 삭제 - 허브몰</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mainstyle.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
+<link rel="stylesheet" type="text/css" href="../css/clear.css" />
+<link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
+<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
 <style type="text/css">
 	body{
 		padding:5px;
@@ -55,7 +53,7 @@
 		border:0;
 	}
 </style>
-<script type="text/javascript" src="<c:url value='/js/jquery-3.6.1.min.js'/>"></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('form[name=frmDelete]').submit(function(){
@@ -76,13 +74,13 @@
 <body>
 <div class="divForm">
 	<form name="frmDelete" method="post" 
-	action="<c:url value='/board/delete_ok.do'/>" >
+	action="<%=request.getContextPath() %>/board/delete_ok.do" >
 		<!-- 삭제시 no가 필요하므로 hidden필드에 넣는다 -->
-		<input type="hidden" name="no" value="${param.no }">
+		<input type="hidden" name="no" value="<%=no%>">
 		<fieldset>
 		<legend>글 삭제</legend>
 	        <div>           
-	        	<span class="sp">${param.no } 번 글을 삭제하시겠습니까?</span>                        
+	        	<span class="sp"><%=no %> 번 글을 삭제하시겠습니까?</span>                        
 	        </div>
 	        <div>           
 	            <label for="pwd">비밀번호</label>
@@ -91,7 +89,7 @@
 	        <div class="center">
 	            <input type ="submit"  value="삭제" />
 	            <input type = "Button" value="글목록" 
-                	OnClick="location.href='<c:url value='/board/list.do'/>'" />
+                	OnClick="location.href='list.do'" />
 	        </div>
 	    </fieldset>
     </form>
