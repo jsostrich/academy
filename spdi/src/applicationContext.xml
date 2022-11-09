@@ -46,5 +46,13 @@
 		</aop:aspect>
 	</aop:config>
 	
-	
+	<bean name="LoggingDaoAsp" class="sprindi.LoggingDAOAspect"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* *..*DAO*.*(..))" id="daoPointCut"/>
+		<aop:aspect id="LogDaoAspect" ref="LoggingDaoAsp">
+			<aop:before method="before" pointcut-ref="daoPointCut"/>
+			<aop:after-returning method="afterReturing" pointcut-ref="daoPointCut"/>
+			<aop:after-throwing method="afterError" pointcut-ref="daoPointCut"/>
+		 </aop:aspect>
+	</aop:config>
 </beans>

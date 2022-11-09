@@ -24,7 +24,7 @@ public class LogginAspect {
 			long finish = System.currentTimeMillis();
 			long time = finish-start;
 			log.info("기록종료");
-			log.info(joinPoint.getSignature().getName()+"메서드 실행시간 : "
+			log.info(joinPoint.getSignature().getName()+" 메서드 실행시간 : "
 					+ time +" 밀리초");
 		}
 		
