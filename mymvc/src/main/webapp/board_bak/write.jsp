@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mainstyle.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
+<link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
+<link rel="stylesheet" type="text/css" href="../css/clear.css" />
+<link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
+<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
+
 <title>자유게시판 글쓰기 - 허브몰</title>
-<script type="text/javascript" src="<c:url value='/js/jquery-3.6.1.min.js'/>"></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('form[name=frmWrite]').submit(function(){
@@ -28,10 +28,9 @@
 
 </head>
 <body>
-
 <div class="divForm">
 <form name="frmWrite" method="post" 
-	action="<c:url value='/board/write_ok.do'/>" >
+	action="<%=request.getContextPath() %>/board/write_ok.do" >
  <fieldset>
 	<legend>글쓰기</legend>
         <div class="firstDiv">
@@ -57,8 +56,8 @@
         <div class="center">
             <input type = "submit" value="등록"/>
             <input type = "Button" value="글목록" 
-            onclick
-            	="location.href='<c:url value='/board/list.do'/>'" />           
+            onclick=
+            	="location.href='<%=request.getContextPath()%>/board/list.do'" />           
         </div>
     </fieldset>
 </form>
