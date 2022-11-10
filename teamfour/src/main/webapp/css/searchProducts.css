@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.pdList {
+    height: 150px;
+}
+
+.pdList img {
+    height: 150px;
+    width: 150px;
+    float: left;
+}
+
+.searchImage {
+    width: 150px;
+}
+
+.searchDescription {
+    height: 150px;
+    float: left;
+    padding: 60px 10px;
+    width: 675px;
+}
