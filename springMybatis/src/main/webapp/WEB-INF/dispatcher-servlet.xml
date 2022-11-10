@@ -11,21 +11,49 @@
 
 	<!--Controller-->
 	<bean id="helloController" 
-	class="com.mysite.pd.controller.HelloController" />
+	class="com.sp.controller.HelloController" />
+	
+	<bean id="helloController2" 
+	class="com.sp.controller.HelloController2" />
 	
 	<!-- pd -->
-	<bean id="pdInsertController" 
-	class="com.mysite.pd.controller.PdInsertController" 
-	p:pdDAO-ref="pdDAO" />
-		
+	<bean id="pdWriteController" 
+	class="com.sp.pd.controller.PdWriteController"
+	p:pdService-ref="pdService"/>
 	
-    
+	
+	<bean id="pdListController" class="com.sp.pd.controller.PdListController"
+	p:pdService-ref="pdService"/>
+	
+	<bean id="pdDetailController" class="com.sp.pd.controller.PdDetailController"
+	p:pdService-ref="pdService"/>
+	
+	
+	<bean id="pdEditController" class="com.sp.pd.controller.PdEditController"
+	p:pdService-ref="pdService"/>
+	
+	<bean id="pdDeleteController" class="com.sp.pd.controller.PdDeleteController"
+	p:pdService-ref="pdService"/>
+	
+	
+	<!-- Service -->
+	<bean id="pdService" class="com.sp.pd.model.PdService"
+	p:pdDao-ref="pdDAO"/>
+	
+	
+		
+	<!-- 프로포티 이름 = 세터메서드의 이름 setxxx<< -->
+    <!-- p :          pool               - ref  -->
    <!-- dao -->
-    <bean id="pdDAO"
-      class="com.mysite.pd.model.PdDAO" />
+    <bean id="pdDAO" class="com.sp.pd.model.PdDAO"
+    p:pool-ref="poolMgr"
+    />
+    
+   <bean id="poolMgr" class="com.sp.db.ConnectionPoolMgr2"/>
   
 
 	<!-- HandlerMapping -->
+	<!-- 
      <bean id="handlerMapping" 
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -34,6 +62,7 @@
 			</props>
 		</property>
      </bean>
+	 -->
 
 	<!-- ViewResolver -->   
 	<bean id="viewResolver"
