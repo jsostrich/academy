@@ -37,6 +37,10 @@ public class UserInfoService {
 	public UserInfoVO selectUser(String user_id) throws SQLException {
 		return userInfoDao.selectUser(user_id);
 	}
+	
+	public UserInfoVO selectUserNo(int user_no) throws SQLException {
+		return userInfoDao.selectUserNo(user_no);
+	}
 
 	public int deleteUser(String userid, String pwd) throws SQLException {
 		return userInfoDao.deleteUser(userid, pwd);

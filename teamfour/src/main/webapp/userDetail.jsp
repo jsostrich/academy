@@ -104,7 +104,7 @@ scope="session"></jsp:useBean>
     <thead>
     <tr>
         <th scope="col">주문서번호</th>
-        <th scope="col">상품코드</th>
+        <th scope="col">상품명</th>
         <th scope="col">상품수</th>
         <th scope="col">금액</th>
         <th scope="col">총 주문금액</th>

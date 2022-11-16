@@ -67,9 +67,9 @@ public class UserInfoDAO {
 			ps.setString(3, vo.getUser_id());
 			ps.setString(4, vo.getUser_pwd());
 			ps.setString(5, vo.getUser_tel());
-			ps.setString(6, vo.getUser_zipcode());
-			ps.setString(7, vo.getUser_address());
-			ps.setString(8, vo.getUser_email());
+			ps.setString(6, vo.getUser_email());
+			ps.setString(7, vo.getUser_zipcode());
+			ps.setString(8, vo.getUser_address());
 			
 			cnt = ps.executeUpdate();
 			
@@ -226,6 +226,56 @@ public class UserInfoDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	public UserInfoVO selectUserNo(int user_no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		UserInfoVO vo = new UserInfoVO();
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select * from userinfo where user_no=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String user_name = rs.getString("user_name");
+				String user_nick = rs.getString("user_nick");
+				String user_id = rs.getString("user_id");
+				String user_pwd = rs.getString("user_pwd");
+				String user_tel = rs.getString("user_tel");
+				String user_email = rs.getString("user_email");
+				String user_zipcode = rs.getString("user_zipcode");
+				String user_address = rs.getString("user_address");
+				Timestamp user_joindate = rs.getTimestamp("user_joindate");
+				int user_class = rs.getInt("user_class");
+				String outdate = rs.getString("outdate");
+				
+				vo.setUser_no(user_no);
+				vo.setUser_name(user_name);
+				vo.setUser_nick(user_nick);
+				vo.setUser_id(user_id);
+				vo.setUser_pwd(user_pwd);
+				vo.setUser_tel(user_tel);
+				vo.setUser_email(user_email);
+				vo.setUser_zipcode(user_zipcode);
+				vo.setUser_address(user_address);
+				vo.setUser_joindate(user_joindate);
+				vo.setUser_class(user_class);
+				vo.setOutdate(outdate);
+			}
+			System.out.println("회원 조회 결과 vo = "+vo+", 매개변수 user_id="
+					+user_no);
+			return vo;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
 	public int deleteUser(String userid, String pwd) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;

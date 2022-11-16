@@ -36,6 +36,20 @@ public class OrderinfoVO {
 		this.del_email = del_email;
 		this.refund_mgno = refund_mgno;
 	}
+	
+	public OrderinfoVO(int order_no, int user_no, int pdcode, int qty, String del_name, String del_tel, String del_add,
+			String del_deadd, String del_email) {
+		super();
+		this.order_no = order_no;
+		this.user_no = user_no;
+		this.pdcode = pdcode;
+		this.qty = qty;
+		this.del_name = del_name;
+		this.del_tel = del_tel;
+		this.del_add = del_add;
+		this.del_deadd = del_deadd;
+		this.del_email = del_email;
+	}
 
 	public int getOrder_no() {
 		return order_no;

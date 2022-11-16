@@ -1,5 +1,6 @@
 package com.teamfour.orderinfo.model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -144,7 +145,8 @@ public class OrderinfoDAO {
 			con = pool.getConnection();
 			
 			String sql = "select pdname, pdcode, price, regdate "
-					+ " ,seller_no, image, detail, div_no from ProductList";
+					+ " ,seller_no, image, detail, div_no from ProductList"
+					+ " where qty>=0";
 			ps = con.prepareStatement(sql);
 			
 			rs=ps.executeQuery();
@@ -211,6 +213,36 @@ public class OrderinfoDAO {
 		}
 		
 	}
+	
+	public boolean buyOrder(int cartNo, int userNo, int pdCode, int qty, String userName,
+			String userTel, String userZipcode, String userAddress, String userEmail) 
+					throws SQLException {
+		Connection con = null;
+		CallableStatement cs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "call buyorder(?,?,?,?,?,?,?,?,?)";
+			cs = con.prepareCall(sql);
+			cs.setInt(1, cartNo);
+			cs.setInt(2, userNo);
+			cs.setInt(3, pdCode);
+			cs.setInt(4, qty);
+			cs.setString(5, userName);
+			cs.setString(6, userTel);
+			cs.setString(7, userZipcode);
+			cs.setString(8, userAddress);
+			cs.setString(9, userEmail);
+			
+			boolean bool = cs.execute();
+			
+			System.out.println("프로시저 결과 bool = "+bool);
+			return bool;			
+		}finally {
+			pool.dbClose(cs, con);
+		}
+	}
+	
 	
 
 }

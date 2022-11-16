@@ -117,10 +117,10 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./mainpage.jsp">Home</a></li>
-                            <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                            <li><a href="./contact.jsp">Contact</a></li>
-                            <li><a href="<%=request.getContextPath()%>/BoardWirteForm.jsp">notice</a></li>
+                            <li class="active"><a href="./mainpage.jsp">메인화면</a></li>
+                            <li><a href="./shoping-cart.jsp">장바구니</a></li>
+                            <li><a href="./contact.jsp">허브몰과 상담하기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/BoardWirteForm.jsp">게시판</a></li>
                         </ul>
                     </nav>
                 </div>

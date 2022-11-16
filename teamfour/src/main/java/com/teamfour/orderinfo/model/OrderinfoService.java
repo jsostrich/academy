@@ -29,5 +29,11 @@ public class OrderinfoService {
 	public List<OrderinfoVO> userOrder(String userid) throws SQLException{
 		return dao.userOrder(userid);
 	}
-
+	
+	public boolean buyOrder(int cartNo, int userNo, int pdCode, int qty, String userName,
+			String userTel, String userZipcode, String userAddress, String userEmail) 
+					throws SQLException {
+		return dao.buyOrder(cartNo, userNo, pdCode, qty, userName, userTel, userZipcode, 
+				userAddress, userEmail);
+	}	
 }

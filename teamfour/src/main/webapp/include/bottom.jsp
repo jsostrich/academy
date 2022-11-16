@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="#"><img src="img/herbmalllogo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>주소 : 서울특별시 서대문구 신촌로 141 위고인 빌딩 1층 이젠아카데미 컴퓨터 학원</li>

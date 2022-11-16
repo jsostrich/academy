@@ -63,24 +63,29 @@ public class CartDAO {
 		try {
 			con = pool.getConnection();
 			
-			String sql = "select c.*, c.qty*p.price as totalprice from \r\n"
-					+ "cart c join productList p\r\n"
-					+ "on c.pdcode=p.pdcode\r\n"
-					+ "join userinfo u\r\n"
-					+ "on c.user_no=u.user_no\r\n"
-					+ "where u.user_no=?";
+			String sql = "SELECT A.PDCODE AS pdcode , A.CARTNO AS cartno , A.QTY AS qty \r\n"
+					+ ", A.USER_NO AS userno , B.PRICE AS price , B.PDNAME AS pdname\r\n"
+					+ ", B.IMAGE AS image, B.price * A.qty AS totalprice\r\n"
+					+ "FROM CART A INNER JOIN PRODUCTLIST B \r\n"
+					+ "ON A.PDCODE = B.PDCODE \r\n"
+					+ "join userinfo u \r\n"
+					+ "on u.user_no = A.user_no\r\n"
+					+ "where u.user_no = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userno);
 			
-			
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				int cartno = rs.getInt("cartno");
 				int pdcode = rs.getInt("pdcode");
+				int cartno = rs.getInt("cartno");
 				int qty = rs.getInt("qty");
+				int price = rs.getInt("price");
+				String pdname = rs.getString("pdname");
+				String image = rs.getString("image");
 				int totalprice = rs.getInt("totalprice");
 				
-				vo = new CartVO(cartno, pdcode, qty, userno, totalprice);
+				vo = new CartVO(cartno, userno, pdcode, image, pdname, price, qty, totalprice);
+				
 				list.add(vo);
 			}
 			System.out.println("selectCartItem / userno = "+userno);
@@ -120,8 +125,8 @@ public class CartDAO {
 		try {
 			con = pool.getConnection();
 			
-			String sql = "SELECT A.PDCODE AS pdcode , A.CARTNO AS cartNo , A.QTY AS qty \r\n"
-					+ ", A.USER_NO AS userNo , B.PRICE AS price , B.PDNAME AS pdname\r\n"
+			String sql = "SELECT A.PDCODE AS pdcode , A.CARTNO AS cartno , A.QTY AS qty \r\n"
+					+ ", A.USER_NO AS userno , B.PRICE AS price , B.PDNAME AS pdname\r\n"
 					+ ", B.IMAGE AS image, B.price * A.qty AS totalprice\r\n"
 					+ "FROM CART A INNER JOIN PRODUCTLIST B \r\n"
 					+ "ON A.PDCODE = B.PDCODE \r\n"
@@ -142,7 +147,7 @@ public class CartDAO {
 				String image = rs.getString("image");
 				int totalprice = rs.getInt("totalprice");
 				
-				vo = new CartVO();
+				vo = new CartVO(cartno, userno, pdcode, image, pdname, price, qty, totalprice);
 				
 				list.add(vo);
 			}
