@@ -35,7 +35,6 @@ public class MemberController {
 			mav.setViewName("redirect:/detail?memberid="+memberid);
 		}
 		return mav;
-		
 	}
 	
 	
