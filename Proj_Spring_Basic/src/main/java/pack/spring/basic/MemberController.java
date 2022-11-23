@@ -10,6 +10,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public ModelAndView create() {
+		
+		//Model 관련내용(DAO, DTO, VO, Service, ...)
 		return new ModelAndView("member/create");
 	}
 	
