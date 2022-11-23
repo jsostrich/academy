@@ -25,8 +25,8 @@ acterEncoding=UTF-8" />
 	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
-		
 		<property name="dataSource" ref="dataSource" />
+		<!-- 여기로 지정된 파일xml에서 원래쓰던 sql문을 쓰면 데이터베이스와 연동되어 정상작동 한다는뜻 -->
 		<property name="mapperLocations"
 			value="classpath:/sqlmap/**/*_SQL.xml" />
 			
