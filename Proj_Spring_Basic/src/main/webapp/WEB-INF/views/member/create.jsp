@@ -49,7 +49,7 @@ button {
 	<div id="wrap">
 		<h1>입력 양식 화면</h1>
 		<hr>
-		<form method="get">
+		<form method="post">
 			<table id="memberTbl">
 				<tbody>
 					<tr>
