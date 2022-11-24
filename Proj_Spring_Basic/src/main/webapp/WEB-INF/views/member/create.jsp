@@ -44,6 +44,16 @@ button {
 	cursor: pointer;
 }
 </style>
+<!-- <script type="text/javascript">
+// Vanilla JS Framework(최초의 자바스크립트), JQuery(라이브러리), Prototype.js
+// Vue.js, React.js, Angular.js + ECMA 6 이후
+// Java, Android, Midlet, Servlet, ....
+// POJO(Plane Old Java Object) 
+// Sun Micro System, Java 산 커피
+	let btnList = function(){
+		location.href="/list";
+	};
+</script> -->
 </head>
 <body>
 	<div id="wrap">
@@ -71,6 +81,12 @@ button {
 				</tbody>
 			</table>
 			<button type="submit">전송</button>
+			<script>
+				let btnList = function(){
+					location.href="/list";
+				};
+			</script>
+			<button type="button" id="listBtn" onclick="btnList()">목록</button>
 		</form>
 	</div>
 	<!-- div#wrap -->
