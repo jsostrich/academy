@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang ="ko">
 <head>
 <meta charset="UTF-8">
 <title>회원 목록 보기</title>
@@ -56,7 +57,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="row" items="${data}">
+				<c:forEach var="row" items="${data}"> <!-- core태그 -->
 					<tr>
 						<td>${row.no}</td>
 						<td><a href="/detail?no=${row.no}"> ${row.uId} </a></td>

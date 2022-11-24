@@ -55,6 +55,7 @@ public class MemberController {
 	//회원정보 상세 보기 끝//
 	
 	//전체 회원 정보 보기 시작//
+	@RequestMapping(value = "/list")
 	public ModelAndView list(@RequestParam Map<String, Object>map) {
 		
 		List<Map<String, Object>> list = this.memberService.list(map);
