@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MemberController {
 	
+	//회원 가입  창//
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		
@@ -36,7 +37,22 @@ public class MemberController {
 		}
 		return mav;
 	}
+	//회원 가입 창 끝 //
 	
+	//회원정보 상세 보기 시작//
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public ModelAndView detail(@RequestParam Map<String, Object>map) {
+		Map<String, Object> detailMap = this.memberService.detail(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data",detailMap);
+		String no = map.get("no").toString();
+		mav.addObject("no",no);
+		mav.setViewName("/member/detail");
+		return mav;
+	}
+	
+	//회원정보 상세 보기 끝//
 	
 	
 }

@@ -16,4 +16,9 @@ public class MemberDao {
 		return this.sqlSessionTemplate.insert("member.insert",map);
 	}
 	
+	public Map<String, Object> selectDetail(Map<String, Object> map){
+		return this.sqlSessionTemplate.selectOne("member.select_detail", map);
+	}
+	
+	
 }
