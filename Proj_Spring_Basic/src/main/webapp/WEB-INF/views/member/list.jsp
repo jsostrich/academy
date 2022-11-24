@@ -47,6 +47,15 @@
 	<div id="wrap">
 		<h1>상세 내용 보기 화면</h1>
 		<hr>
+		<!-- GNB 메뉴 시작 -->
+		<nav>
+			<ul>
+				<li><a href="/">메인페이지</a></li>
+				<li><a href="/list">목록</a></li>
+				<li><a href="/create">회원가입</a></li>
+			</ul>
+		</nav>
+		<!-- GNB 메뉴 끝 -->
 		<table id="memberTbl">
 			<thead>
 				<tr>

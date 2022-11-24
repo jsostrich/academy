@@ -68,4 +68,17 @@ public class MemberController {
 	}
 	//전체 회원 정보 보기 끝//
 	
+	//인덱스 페이지(=메인페이지) 시작
+	@RequestMapping(value = "/")
+	public ModelAndView index() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/index");
+		return mav;
+	}
+	// 인덱스 페이지 끝 //
+	
+	
+	
+	
+	
 }

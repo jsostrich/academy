@@ -43,6 +43,11 @@ button {
 	padding: 4px 10px;
 	cursor: pointer;
 }
+a {
+			font-size: 18px;
+			padding: 4px 10px;
+			cursor: pointer;
+		}
 </style>
 <!-- <script type="text/javascript">
 // Vanilla JS Framework(최초의 자바스크립트), JQuery(라이브러리), Prototype.js
@@ -58,6 +63,15 @@ button {
 <body>
 	<div id="wrap">
 		<h1>입력 양식 화면</h1>
+		<!-- GNB 메뉴 시작 -->
+		<nav>
+			<ul>
+				<li><a href="/">메인페이지</a></li>
+				<li><a href="/list">목록</a></li>
+				<li><a href="/create">회원가입</a></li>
+			</ul>
+		</nav>
+		<!-- GNB 메뉴 끝 -->
 		<hr>
 		<form method="post">
 			<table id="memberTbl">

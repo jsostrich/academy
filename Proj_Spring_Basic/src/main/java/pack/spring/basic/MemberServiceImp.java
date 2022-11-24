@@ -30,9 +30,18 @@ public class MemberServiceImp implements MemberService {
 		return this.memberDao.selectDetail(map);
 	}
 // 회원 상세 정보 끝 //
-
+	
+// 회원 정보 리스트 보기 시작//
 	@Override
 	public List<Map<String, Object>> list(Map<String, Object> map) {
 		return this.memberDao.selectList(map);
 	}
+// 회원 정보 리스트 보기 끝 //
+
+// 메인페이지 시작 //
+	@Override
+	public String index() {
+		return null;
+	}
+// 메인페이지 끝 //
 }
