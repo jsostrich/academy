@@ -4,10 +4,10 @@
 
 
 
-<mapper namespace="member">
+<mapper namespace="member"> <!-- member.insert -->
 
 	<insert id="insert" parameterType="hashMap"
-		useGeneratedKeys="true" keyProperty="member_id">
+		useGeneratedKeys="true" keyProperty="no">
 			<![CDATA[insert into memList (uId, uPw, uName, uEmail)
 			values(#{uId}, #{uPw}, #{uName}, #{uEmail})	]]>
 	</insert>

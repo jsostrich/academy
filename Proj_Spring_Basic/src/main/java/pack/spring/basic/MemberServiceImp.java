@@ -16,7 +16,7 @@ public class MemberServiceImp implements MemberService {
 		
 		int affectRowCnt = this.memberDao.insert(map);
 		if (affectRowCnt == 1) {
-			return map.get("member_id").toString();
+			return map.get("no").toString();
 		}
 		return null;
 	}

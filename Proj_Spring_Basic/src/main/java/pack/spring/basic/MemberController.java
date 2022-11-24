@@ -27,12 +27,12 @@ public class MemberController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String memberid = this.memberService.create(map);
+		String no = this.memberService.create(map);
 		
-		if(memberid == null) {
+		if(no == null) {
 			mav.setViewName("redirect:/create");
 		}else {
-			mav.setViewName("redirect:/detail?memberid="+memberid);
+			mav.setViewName("redirect:/detail?no="+no);
 		}
 		return mav;
 	}
