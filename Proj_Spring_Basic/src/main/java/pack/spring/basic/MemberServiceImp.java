@@ -1,5 +1,6 @@
 package pack.spring.basic;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,9 @@ public class MemberServiceImp implements MemberService {
 		return this.memberDao.selectDetail(map);
 	}
 // 회원 상세 정보 끝 //
+
+	@Override
+	public List<Map<String, Object>> list(Map<String, Object> map) {
+		return this.memberDao.selectList(map);
+	}
 }

@@ -1,5 +1,6 @@
 package pack.spring.basic;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,19 @@ public class MemberController {
 		mav.setViewName("/member/detail");
 		return mav;
 	}
-	
 	//회원정보 상세 보기 끝//
 	
+	//전체 회원 정보 보기 시작//
+	public ModelAndView list(@RequestParam Map<String, Object>map) {
+		
+		List<Map<String, Object>> list = this.memberService.list(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data",list);
+		mav.setViewName("/member/list");
+		
+		return mav;
+	}
+	//전체 회원 정보 보기 끝//
 	
 }
