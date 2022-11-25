@@ -42,6 +42,9 @@
 		cursor: pointer;
 	}
 </style>
+<link rel="stylesheet" href="/resources/style/style.css" />
+<script src="/resources/script/script.js"></script>
+
 </head>
 <body>
 	<div id="wrap">

@@ -24,6 +24,7 @@
 			cursor: pointer;
 		}
 </style>
+<script src="/resources/script/script.js"></script>
 </head>
 <body>
 	<div id="wrap">

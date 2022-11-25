@@ -49,6 +49,7 @@ a {
 			cursor: pointer;
 		}
 </style>
+<script src="/resources/script/script.js"></script>
 <!-- <script type="text/javascript">
 // Vanilla JS Framework(최초의 자바스크립트), JQuery(라이브러리), Prototype.js
 // Vue.js, React.js, Angular.js + ECMA 6 이후
